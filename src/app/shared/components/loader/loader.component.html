@@ -1,1 +1,7 @@
-<p>loader works!</p>
+<ng-container *ngIf="loaderService.isLoading$ | async">
+    <div class="loading">
+        <div class="spinner">
+            <div *ngFor="let i of [1,2,3]" class="bounce{{i}}"></div>
+        </div>
+    </div>
+</ng-container>

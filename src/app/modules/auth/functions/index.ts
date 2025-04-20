@@ -1,0 +1,1 @@
+export * from '@auth/functions/authentication.function';

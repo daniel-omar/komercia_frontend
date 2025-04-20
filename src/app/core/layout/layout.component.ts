@@ -3,10 +3,16 @@ import { MenuComponent } from "../components/menu/menu.component";
 import { BreadcrumbComponent } from "../components/breadcrumb/breadcrumb.component";
 import { LoaderComponent } from "@shared/components/loader/loader.component";
 import { RouterOutlet } from '@angular/router';
+import { MenuService } from '@core/services/menu.service';
 
 @Component({
   selector: 'app-layout',
-  imports: [MenuComponent, BreadcrumbComponent, LoaderComponent, RouterOutlet],
+  imports: [
+    MenuComponent,
+    BreadcrumbComponent,
+    LoaderComponent,
+    RouterOutlet,
+  ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })

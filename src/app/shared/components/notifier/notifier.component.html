@@ -1,0 +1,13 @@
+<section class="content__notifier">
+  <div class="row d-flex ">
+    <div class="col flex-grow-1 text-center align-content-center fs-6">
+      {{ data.message }}
+    </div>
+    <div class="col-2">
+      <button mat-mini-fab color="primary" (click)="snackBarRef.dismiss()" class="btn btn-danger">
+        <i class="bi bi-x-circle"></i>
+      </button>
+    </div>
+  </div>
+
+</section>

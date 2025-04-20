@@ -25,6 +25,15 @@
       "@core/*": [
         "src/app/core/*"
       ],
+      "@auth/*": [
+        "src/app/modules/auth/*"
+      ],
+      "@home/*": [
+        "src/app/modules/home/*"
+      ],
+      "@env/*": [
+        "src/environments/*"
+      ],
     }
   },
   "angularCompilerOptions": {
