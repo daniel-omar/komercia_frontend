@@ -8,20 +8,14 @@ import { LoginResponse } from '../interfaces/login-response.interface';
 import { ResponseData } from '@shared/interfaces/response-data.interface';
 
 import { onAuthenticationSaveStorage } from '@auth/functions';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class AuthService {
 
   private readonly baseUrl: string = environment.apiBaseUrl;
   private _http = inject(HttpClient);
-
-  private _currentUser = signal<User | null>(null);
-  private _authStatus = signal<AuthStatus>(AuthStatus.checking);
-
-  constructor() { }
-
-  public currentUser = computed(() => this._currentUser());
-  public authStatus = computed(() => this._authStatus());
+  private _authenticationService = inject(AuthenticationService);
 
   login(loginDto: any): Observable<boolean> {
     const url = `/auth/login`;
@@ -29,9 +23,9 @@ export class AuthService {
       .pipe(
         tap(({ data }) => {
           const { usuario, token } = data;
-          // console.log(usuario)
-          this._currentUser.set(usuario);
-          this._authStatus.set(AuthStatus.authenticated);
+
+          this._authenticationService._currentUser.set(usuario);
+          this._authenticationService._authStatus.set(AuthStatus.authenticated);
 
           onAuthenticationSaveStorage(usuario, token);
 

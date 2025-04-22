@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 import { environment } from 'src/environments/environment';
 import { IMenu, IMenuSubitem } from '@core/interfaces';
@@ -10,8 +9,6 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 @Component({
   selector: 'app-menu',
   imports: [
-    ToolbarComponent,
-
     RouterModule,
     NgOptimizedImage,
     CommonModule
@@ -26,6 +23,7 @@ export class MenuComponent {
 
   ngOnInit(): void {
     this.getMenu();
+    console.log(this.menuItems)
   }
 
   public irA(ruta: string, codNsf: string = ''): void {

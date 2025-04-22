@@ -34,6 +34,9 @@
       "@env/*": [
         "src/environments/*"
       ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
     }
   },
   "angularCompilerOptions": {

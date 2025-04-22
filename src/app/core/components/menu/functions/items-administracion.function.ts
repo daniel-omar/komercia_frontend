@@ -6,7 +6,7 @@ export function buildConfigAdministracion(menuRoleService: MenuRoleService): IMe
     const buildConfig: IMenu = {
 
         text: "ADMINISTRACIÓN",
-        icon: "/assets/img/menu/Gears.svg",
+        icon: "/assets/img/menu/engranaje.svg",
         visible: menuRoleService.onVisibleAdministracion(),
         subitems: [
             {

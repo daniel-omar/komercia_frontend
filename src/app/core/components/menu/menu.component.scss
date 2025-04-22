@@ -1,0 +1,129 @@
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 !important;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+
+.menu a:hover {
+    background-color: #212429;
+    color: #ebb11a !important;
+}
+
+.menu ul li {
+    position: relative;
+    background-color: #2F343A;
+    height: 3.5rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu>ul>li:first-child {
+    cursor: pointer;
+}
+
+.menu ul li:hover {
+    transition: .5s;
+    background-color: #212429;
+
+    &>img {
+
+        filter: brightness(0) saturate(100%) invert(83%) sepia(21%) saturate(2872%) hue-rotate(347deg) brightness(96%) contrast(92%);
+
+    }
+
+}
+
+.menu .menu__item:hover::after {
+    content: '';
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    background-color: #ebb11a;
+    top: 0;
+    left: 0;
+}
+
+.menu ul ul {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    z-index: 1;
+}
+
+.menu ul ul ul li {
+    background-color: #212429;
+    cursor: pointer;
+}
+
+.menu li li {
+    width: 15rem;
+    background-color: #444a52;
+}
+
+.menu li:hover>ul {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .5s, visibility .5s;
+}
+
+.is-active-selected {
+
+    background-color: #212429 !important;
+
+    &::after {
+        content: '';
+        width: 5px;
+        height: 100%;
+        position: absolute;
+        background-color: #ebb11a;
+        top: 0;
+        left: 0;
+    }
+
+    img {
+        filter: brightness(0) saturate(100%) invert(83%) sepia(21%) saturate(2872%) hue-rotate(347deg) brightness(96%) contrast(92%);
+    }
+
+}
+
+.is-active {
+    background-color: #212429;
+    color: #ebb11a !important;
+}
+
+.is-scroleable {
+    overflow-y: auto;
+    height: 21.5rem;
+}
+
+.is-only-selected {
+    background-color: #212429 !important;
+    cursor: pointer;
+}
+
+.is-scroleable::-webkit-scrollbar {
+    width: 6px;
+    background-color: #212429;
+}
+
+.is-scroleable::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #ebb11a;
+}

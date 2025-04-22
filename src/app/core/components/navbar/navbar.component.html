@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+        <button class="btn btn-dark" (click)="toggleSidebar()">☰</button>
+
+        <div class="header__opciones">
+            <div class="header__usuario">
+                <p>{{ sessionStorage?.nombre }}</p>
+                <a (click)="onLogout()" class="nav-link" href="#">Cerrar Sesión</a>
+            </div>
+            <div class="header__avatar">
+                <img src="/assets/img/avatar-default.png" alt="avatar-default" />
+            </div>
+        </div>
+
+    </div>
+
+</nav>

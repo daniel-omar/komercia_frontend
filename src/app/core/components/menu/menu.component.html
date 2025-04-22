@@ -1,57 +1,50 @@
-<app-toolbar></app-toolbar>
-<section class="divCab">
-    <div class="menu__lateral">
-        <div class="menu__lateral__icon">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+<div class="">
 
-        <nav class="menu">
-            <ul>
-                <li (click)="irA('','1')" class="menu__item">
-                    <img src="/assets/img/menu/Home.svg" alt="home" />
-                </li>
+    <nav class="menu">
+        <ul>
+            <li (click)="irA('','1')" class="menu__item">
+                <img src="/assets/img/menu/home.svg" alt="home" />
+            </li>
 
-                <li *ngFor="let item of menuItems" class="menu__item" routerLinkActive="is-active-selected"
-                    [routerLinkActiveOptions]="{exact: true}">
+            <li *ngFor="let item of menuItems" class="menu__item">
 
-                    <img [ngSrc]="item.icon" [alt]="item.icon" width="25" height="25">
+                <img [ngSrc]="item.icon" [alt]="item.icon" width="25" height="25">
 
-                    <ul>
-                        <div [ngClass]="{'is-scroleable': isScroleable(item.subitems) }">
-                            <li *ngFor="let subitem of item.subitems" [ngClass]="{'is-only-selected': subitem.url }">
+                <a href="">{{item.text}}</a>
 
-                                <a [routerLink]="subitem.url" [routerLinkActive]="subitem.url ? 'is-active': ''"
-                                    [routerLinkActiveOptions]="{exact: true}" (click)="null">{{subitem.text}}
-                                </a>
+                <ul>
+                    <div [ngClass]="{'is-scroleable': isScroleable(item.subitems) }">
+                        <li *ngFor="let subitem of item.subitems" [ngClass]="{'is-only-selected': subitem.url }">
 
-                                <ul>
+                            <a [routerLink]="subitem.url" [routerLinkActive]="subitem.url ? 'is-active': ''"
+                                [routerLinkActiveOptions]="{exact: true}" (click)="null">{{subitem.text}}
+                            </a>
 
-                                    <div class="submenu_div"
-                                        [ngClass]="{'is-scroleable': isScroleableSub(subitem.subitems) }">
+                            <ul>
 
-                                        <li *ngFor="let subsubitem of subitem.subitems">
+                                <div class="submenu_div"
+                                    [ngClass]="{'is-scroleable': isScroleableSub(subitem.subitems) }">
 
-                                            <a [routerLink]="subsubitem.url"
-                                                [routerLinkActive]="subsubitem.url ? 'is-active': ''"
-                                                [routerLinkActiveOptions]="{exact: true}"
-                                                (click)="null">{{subsubitem.text}}</a>
-                                        </li>
+                                    <li *ngFor="let subsubitem of subitem.subitems">
 
-                                    </div>
+                                        <a [routerLink]="subsubitem.url"
+                                            [routerLinkActive]="subsubitem.url ? 'is-active': ''"
+                                            [routerLinkActiveOptions]="{exact: true}"
+                                            (click)="null">{{subsubitem.text}}</a>
+                                    </li>
 
-                                </ul>
+                                </div>
 
-                            </li>
+                            </ul>
 
-                        </div>
+                        </li>
 
-                    </ul>
+                    </div>
 
-                </li>
-            </ul>
-        </nav>
+                </ul>
 
-    </div>
-</section>
+            </li>
+        </ul>
+    </nav>
+
+</div>

@@ -1,4 +1,20 @@
-<app-menu></app-menu>
-<app-breadcrumb></app-breadcrumb>
+<!-- <app-menu></app-menu>
+<app-breadcrumb></app-breadcrumb> -->
+
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div [ngClass]="{ 'd-none': !isSidebarOpen, 'd-block': isSidebarOpen }" class="border-end bg-white"
+        id="sidebar-wrapper">
+        <app-sidebar></app-sidebar>
+    </div>
+
+    <!-- Page content -->
+    <div id="page-content-wrapper" class="w-100">
+        <app-navbar (sidebarOpen)="sidebarOpened($event)"></app-navbar>
+
+        <div class="container-fluid mt-4">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
 <app-loader></app-loader>
-<router-outlet></router-outlet>

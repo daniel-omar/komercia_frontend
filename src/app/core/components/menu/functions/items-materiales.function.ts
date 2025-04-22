@@ -5,7 +5,7 @@ export function buildConfigProductos(menuRoleService: MenuRoleService): IMenu {
 
     const buildConfig: IMenu = {
         text: "Productos",
-        icon: "/assets/img/menu/Materiales.svg",
+        icon: "/assets/img/menu/productos.svg",
         visible: menuRoleService.onVisibleProductos(),
         subitems: [
             {

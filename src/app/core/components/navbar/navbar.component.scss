@@ -1,0 +1,25 @@
+.header__opciones {
+    display: flex;
+}
+
+.header__usuario {
+    padding: 0px 15px;
+    text-align: right;
+}
+
+.header__usuario p {
+    font-size: 1rem;
+    color: #4D4F5C;
+    margin: 0px !important;
+}
+
+.header__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+        height: 32px;
+        width: 64px;
+    }
+
+}

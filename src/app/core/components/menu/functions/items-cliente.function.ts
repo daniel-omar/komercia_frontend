@@ -5,7 +5,7 @@ export function buildConfigCliente(menuRoleService: MenuRoleService): IMenu {
 
     const buildConfig: IMenu = {
         text: "Cliente",
-        icon: "/assets/img/menu/Maletin.svg",
+        icon: "/assets/img/menu/maletin.svg",
         visible: menuRoleService.onVisibleClientes(),
         subitems: [
             {

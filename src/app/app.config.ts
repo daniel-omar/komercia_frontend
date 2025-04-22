@@ -7,6 +7,8 @@ import { AuthInterceptorProvider } from '@auth/interceptors/auth.interceptor';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { DatePipe } from '@angular/common';
+import { AuthService } from '@auth/services/auth.service';
+import { AuthenticationService } from '@auth/services/authentication.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,7 +23,8 @@ export const appConfig: ApplicationConfig = {
       timestampFormat: 'MMMM, EEEE dd, hh:mm:ss a',
       disableConsoleLogging: false
     })),
-    DatePipe
+    DatePipe,
+    AuthenticationService
     //provideClientHydration(withEventReplay())
     //AuthInterceptorProvider
   ],

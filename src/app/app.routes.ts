@@ -16,12 +16,14 @@ export const routes: Routes = [
     {
         path: '',
         component: LayoutComponent,
+        // canMatch: [isAuthenticatedGuard],
         children: [
-            { path: '', pathMatch: 'full', loadComponent: () => import('@home/home.component').then(m => m.HomeComponent) },
+            { path: '', pathMatch: 'full',canMatch: [isAuthenticatedGuard], loadComponent: () => import('@home/home.component').then(m => m.HomeComponent) },
         ]
     },
     {
         path: 'auth',
+        data: { preload: true },
         providers: [
             provideHttpClient(withInterceptorsFromDi()),
             { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

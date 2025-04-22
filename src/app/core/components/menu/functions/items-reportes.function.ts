@@ -5,7 +5,7 @@ export function buildConfigReportes(menuRoleService: MenuRoleService): IMenu {
 
     const buildConfig: IMenu = {
         text: "Reportes",
-        icon: "/assets/img/menu/Barras.svg",
+        icon: "/assets/img/menu/barras.svg",
         visible: menuRoleService.onVisibleReportes(),
         subitems: [
             {
