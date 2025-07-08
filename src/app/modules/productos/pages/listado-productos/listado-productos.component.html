@@ -1,3 +1,11 @@
+<div class="row mt-2">
+    <div class="col-12 d-flex justify-content-end">
+        <button mat-stroked-button extended (click)="goCreateProduct()">
+            Crear producto
+            <mat-icon class="icon-large">chevron_right</mat-icon>
+        </button>
+    </div>
+</div>
 <listado-filtro-productos (search)="searchByFilters($event)"></listado-filtro-productos>
 <listado-tabla-productos *ngIf="(productsResponseObservable$ | async) as productsResponse"
     [productosResponse]="productsResponse" [tableProperties]="{
