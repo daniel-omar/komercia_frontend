@@ -14,6 +14,7 @@ import { AuthService } from '@auth/services/auth.service';
 import { ListadoProductosComponent } from './modules/productos/pages/listado-productos/listado-productos.component';
 import { ProductsInterceptor } from './modules/productos/interceptors/products.interceptor';
 import { FormularioProductoComponent } from './modules/productos/pages/formulario-producto/formulario-producto.component';
+import { CargaProductosComponent } from './modules/productos/pages/carga-productos/carga-productos.component';
 
 export const routes: Routes = [
     {
@@ -65,6 +66,7 @@ export const routes: Routes = [
             { path: 'listado-productos', data: { breadcrumb: 'Listado Productos' }, title: 'Productos', component: ListadoProductosComponent },
             { path: 'nuevo-producto', data: { breadcrumb: 'Nuevo Producto' }, title: 'Productos', component: FormularioProductoComponent },
             { path: 'edicion-producto/:id', data: { breadcrumb: 'Edicion Producto' }, title: 'Productos', component: FormularioProductoComponent },
+            { path: 'carga-productos', data: { breadcrumb: 'Carga Productos' }, title: 'Productos', component: CargaProductosComponent },
             // { path: '**', redirectTo: 'auth' }
         ]
     },

@@ -1,0 +1,55 @@
+<div class="row mt-2">
+    <div class="col-12">
+        <mat-card class="">
+            <mat-card-header class="form_header">
+                <mat-card-title>Carga</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="row mt-2">
+                    <div class="col-12 col-md-8">
+                        <ngx-file-drop class="border-container" [multiple]="false" (onFileDrop)="onDrop($event)"
+                            accept=".xlsx,.xls">
+                            <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                                <div class="container_upload" *ngIf="files.length == 0">
+                                    <div>
+                                        <mat-icon class="icon_upload">cloud_upload</mat-icon>
+                                    </div>
+                                    <div class="labels__upload">
+                                        <div class="label_title">Importar el excel de carga</div>
+                                        <!-- <div class="label_descripcion">Máx 5 MB</div> -->
+                                    </div>
+                                    <div>
+                                        <button mat-button class="button_upload" (click)="openFileSelector()">Selecciona
+                                            archivo</button>
+                                    </div>
+                                </div>
+                                <div class="container_upload" *ngIf="files.length > 0">
+                                    <div>
+                                        <mat-icon class="icon_upload">cloud_upload</mat-icon>
+                                    </div>
+                                    <div class="labels__upload">
+                                        <div class="label_title">Archivo seleccionado</div>
+                                        <div class="label_descripcion">{{ files[0].relativePath}}</div>
+                                    </div>
+                                    <div>
+                                        <button mat-button class="button_upload" (click)="openFileSelector()">Cambiar
+                                            archivo</button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngx-file-drop>
+                    </div>
+                    <div class="col-12 col-md-4 ">
+                        <div class="contenedor__botones">
+                            <button mat-flat-button color="primary" [disabled]="files.length == 0" type="submit"
+                                (click)="onSubmit()">Cargar
+                                archivo</button>
+                            <button mat-flat-button color="primary" (click)="exportTemplateExcel()">Descargar plantilla
+                                carga</button>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

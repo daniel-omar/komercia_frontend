@@ -1,0 +1,3 @@
+<panel-carga-productos></panel-carga-productos>
+<tabla-detalle-carga-productos *ngIf="(cargaResponseObservable$ | async) as cargaResponse"
+    [cargaResponse]="cargaResponse"></tabla-detalle-carga-productos>

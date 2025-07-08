@@ -1,0 +1,79 @@
+<article class="row mt-2" *ngIf="dataSource && dataSource.data && dataSource.data.length > 0; else noDataBlock">
+    <ng-container>
+        <section class="table_container">
+            <table *ngIf="dataSource.data.length > 0" mat-table [dataSource]="dataSource" class="content__table" matSort
+                (matSortChange)="announceSortChange($event)">
+                <ng-container matColumnDef="id_carga">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por carga">
+                        N° Carga
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.id_carga}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="total_registros">
+                    <th mat-header-cell *matHeaderCellDef>Total registros</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="content_item">
+                            {{element.total_registros }}
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="total_registros_correctos">
+                    <th mat-header-cell *matHeaderCellDef>Total registros correctos</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="content_item">
+                            {{element.total_registros_correctos }}
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="total_registros_incorrectos">
+                    <th mat-header-cell *matHeaderCellDef>Total registros incorrectos</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="content_item">
+                            {{element.total_registros_incorrectos }}
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="observacion">
+                    <th mat-header-cell *matHeaderCellDef> Observación </th>
+                    <td mat-cell *matCellDef="let element"> {{element.observacion|| '-' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="fecha_hora_registro">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por fecha">
+                        Fecha y hora registro</th>
+                    <td mat-cell *matCellDef="let element"> {{(element.fecha_hora_registro| date:'dd/MM/yyyy HH:mm')}}
+                    </td>
+                </ng-container>
+
+                <!-- </form> -->
+                <tr mat-header-row *matHeaderRowDef="getDisplayedColumns(); sticky:true"></tr>
+                <tr mat-row *matRowDef="let row; columns: getDisplayedColumns()"></tr>
+
+            </table>
+        </section>
+
+        <!-- <mat-paginator *ngIf="onHideDisplayedPaginator(paginador)" [length]="paginador.total"
+            (page)="onChangePage($event)" [pageSize]="paginador.per_page" [pageIndex]="paginador.current_page"
+            [showFirstLastButtons]="true" [hidePageSize]="true">
+        </mat-paginator> -->
+    </ng-container>
+
+</article>
+
+
+<ng-template #noDataBlock>
+    <div class="row">
+        <div class="col">
+            <div class="no-data-message">
+                <img src="/assets/img/obras/no-data-message.png" alt="icon no data message">
+                <p>Aún no hay información</p>
+            </div>
+        </div>
+    </div>
+</ng-template>
