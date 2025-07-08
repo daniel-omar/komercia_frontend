@@ -1,34 +1,20 @@
-<div class="dialog__content">
-    <div class="dialog__content__button__header">
-        <button mat-icon-button [mat-dialog-close]="false" mat-dialog-close color="primary">
-            <mat-icon svgIcon="close_circle"></mat-icon>
-        </button>
+<div mat-dialog-title>
+    <div class="row" style="margin-top: -20px !important;">
+        <div class="col-12 d-flex justify-content-center">
+            <mat-icon class="icon-large">question_mark</mat-icon>
+        </div>
     </div>
-
-    <img *ngIf="data.icon" class="dialog__content__image" [src]="data.icon" [alt]="data.icon">
-
-    <div class="dialog__content__message">
-
-        <span>{{ data.title }}</span>
-        <span *ngIf="data.subtitle" class="dialog__content__message--subtitle">{{ data.subtitle }}</span>
-
-    </div>
-
-    <div class="dialog__content__buttons">
-        
-        <button 
-            type="button" 
-            [class]="data.buttonCancelColor || 'color-accent'" 
-            [mat-dialog-close]="false"
-            mat-flat-button>{{ data.buttonCancelText || 'CANCELAR' }}
-        </button>
-
-        <button 
-            type="submit" 
-            [class]="data.buttonConfirmColor || 'color-primary'" 
-            [mat-dialog-close]="true" 
-            mat-flat-button>{{ data.buttonConfirmText || 'ACEPTAR' }}
-        </button>
-    </div>
-
 </div>
+<mat-dialog-content class="mat-typography">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            <h5>{{ data.title }}</h5>
+            <p>{{ data.subtitle }}</p>
+        </div>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-stroked-button mat-dialog-close>{{ data.buttonCancelText || 'CANCELAR' }}</button>
+    <button mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial>{{ data.buttonConfirmText || 'ACEPTAR' }}</button>
+</mat-dialog-actions>

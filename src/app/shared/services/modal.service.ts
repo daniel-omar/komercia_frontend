@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { PopUpResultComponent } from '@shared/components/pop-up-result/pop-up-result.component';
-// import { PopUpConfirmationComponent } from '@shared/components/pop-up-confirmation/pop-up-confirmation.component';
+import { PopUpConfirmationComponent } from '@shared/components/pop-up-confirmation/pop-up-confirmation.component';
 // import { PopUpConfirmationInputComponent } from '@shared/components/pop-up-confirmation-input/pop-up-confirmation-input.component';
 // import { PopUpConfirmationInputTextComponent } from '@shared/components/pop-up-confirmation-input-text/pop-up-confirmation-input-text.component';
 // import { PopUpHandleManyErrorsComponent } from '@shared/components/pop-up-handle-many-errors/pop-up-handle-many-errors.component';
@@ -30,7 +30,7 @@ export class ModalService {
   public openDialogConfirmation(dialogConfig: IDialogConfigConfirm, callback: (result: boolean) => void): void {
 
     const config = createDialogConfig(defaultDialogConfirmConfig, dialogConfig);
-    //this.openDialogGeneric(PopUpConfirmationComponent, config, callback);
+    this.openDialogGeneric(PopUpConfirmationComponent, config, callback);
 
   }
 

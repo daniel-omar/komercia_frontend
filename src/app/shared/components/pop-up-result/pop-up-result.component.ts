@@ -11,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-
   ],
   templateUrl: './pop-up-result.component.html',
   styleUrls: ['./pop-up-result.component.scss'],

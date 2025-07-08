@@ -1,3 +1,13 @@
-<panel-carga-productos></panel-carga-productos>
+<panel-carga-productos (getDetails)="getDetailsObraCarga($event)"></panel-carga-productos>
+<br>
 <tabla-detalle-carga-productos *ngIf="(cargaResponseObservable$ | async) as cargaResponse"
     [cargaResponse]="cargaResponse"></tabla-detalle-carga-productos>
+<br>
+<div class="row mt-2">
+    <div class="col-12 d-flex justify-content-end">
+        <button mat-stroked-button extended (click)="goListProducts()">
+            <mat-icon class="icon-large">chevron_left</mat-icon>
+            Ir a listado
+        </button>
+    </div>
+</div>

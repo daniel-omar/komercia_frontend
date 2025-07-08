@@ -40,6 +40,14 @@ export class PanelCargaComponent {
   @Output("getDetails")
   public getDetails: EventEmitter<Carga | null> = new EventEmitter()
 
+  ngOnInit() {
+    // const carga: Carga = {
+    //   id_carga: 46,
+    //   id_formato: 1
+    // }
+    // this.getDetails.emit(null);
+  }
+
   onDrop(files: NgxFileDropEntry[]): void {
     const fileExtension: string = files[0].fileEntry.name;
     if (!this.onIsFileAllowed(fileExtension)) return;
@@ -70,12 +78,12 @@ export class PanelCargaComponent {
     )
 
     let data = {
-      buttonConfirmText: 'Aceptar',
+      buttonConfirmText: 'ACEPTAR',
+      buttonCancelText: 'CANCELAR',
       buttonConfirmColor: 'color-primary',
-      title: '¿Seguro que quieres cargar el archivo de obras?',
+      title: '¿Seguro que quieres cargar el archivo de productos?',
       hideButtonCancel: false
     }
-
 
     this._modalService.openDialogConfirmation({ data }, (response: any) => {
       this.getDetails.emit(null);
@@ -84,7 +92,7 @@ export class PanelCargaComponent {
 
       this._productsService.createProductsBulk(this.filesUpdate[0])
         .subscribe((responseCarga) => {
-
+          console.log(responseCarga)
           this.clear();
           if (!responseCarga) return;
 

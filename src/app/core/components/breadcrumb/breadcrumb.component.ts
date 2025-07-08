@@ -29,7 +29,6 @@ export class BreadcrumbComponent {
     private activatedRoute: ActivatedRoute,
   ) {
     this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
-    console.log(this.breadcrumbs);
   }
 
   /**
@@ -37,13 +36,11 @@ export class BreadcrumbComponent {
    * Se suscribe al evento de cambio de ruta y actualiza la lista de migajas de pan correspondiente a la ruta actual.
    */
   ngOnInit() {
-
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       distinctUntilChanged(),
       tap(() => this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root))
     ).subscribe();
-
   }
 
   /**
@@ -58,15 +55,13 @@ export class BreadcrumbComponent {
     let label = route.routeConfig && route.routeConfig.data ? route.routeConfig.data["breadcrumb"] : '';
     let path = route.routeConfig && route.routeConfig.data ? route.routeConfig.path : '';
 
-    console.log({ label, path })
-
-    const lastRoutePart = path!.split('/').pop();
-    const isDynamicRoute = lastRoutePart!.startsWith(':');
-    if (isDynamicRoute && !!route.snapshot) {
-      const paramName = lastRoutePart!.split(':')[1];
-      path = path!.replace(lastRoutePart!, route.snapshot.params[paramName]);
-      label = route.snapshot.params[paramName];
-    }
+    // const lastRoutePart = path!.split('/').pop();
+    // const isDynamicRoute = lastRoutePart!.startsWith(':');
+    // if (isDynamicRoute && !!route.snapshot) {
+    //   const paramName = lastRoutePart!.split(':')[1];
+    //   path = path!.replace(lastRoutePart!, route.snapshot.params[paramName]);
+    //   label = route.snapshot.params[paramName];
+    // }
 
     const nextUrl = path ? `${url}/${path}` : url;
 

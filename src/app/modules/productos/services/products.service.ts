@@ -55,7 +55,7 @@ export class ProductsService {
   }
 
   getCarga(idCarga: number): Observable<CargaResponse> {
-    const url = `/products/product/get_carga?${idCarga}`;
+    const url = `/products/product/get_carga?id_carga=${idCarga}`;
     return this._http.get<ResponseData<CargaResponse>>(url)
       .pipe(
         map(({ data }) => {
