@@ -1,1 +1,31 @@
-<p>breadcrumb works!</p>
+<div class="row px-3">
+    <div class="card">
+        <div class="card-body ">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb my-0">
+                    <li *ngFor="let breadcrumb of breadcrumbs; let i = index;" class="breadcrumb-item"
+                        [ngClass]="{'active': isLastBreadcrumb(i)}">
+                        <a [routerLink]="i > 0 ? breadcrumb.url : null">
+                            {{ breadcrumb.label }}
+                        </a>
+                    </li>
+                    <!-- <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Library</li> -->
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<!-- <section *ngIf="breadcrumbs.length">
+    <ol class="breadcrumb">
+        <li *ngFor="let breadcrumb of breadcrumbs; let i = index;">
+            <span [routerLink]="i > 0 ? breadcrumb.url : null" [ngClass]="{'breadcrumb__active': isLastBreadcrumb(i)}">
+                {{ breadcrumb.label }}
+            </span>
+        </li>
+    </ol>
+    <div class="breadcrumb__title">
+        <p>{{ breadcrumbs[breadcrumbs.length - 1].label }}</p>
+    </div>
+</section> -->

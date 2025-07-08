@@ -12,7 +12,7 @@ import { TokenService } from '@shared/services/token.service';
 })
 export class NavbarComponent {
   private _tokenService = inject(TokenService);
-  public sessionStorage: (User | null) = this._tokenService.getUser;
+  public currentUser: (User | null) = this._tokenService.currentUser();
   private _authService = inject(AuthService);
 
   public isSidebarOpen = true;
@@ -29,9 +29,11 @@ export class NavbarComponent {
     this._authService.logout()
       .subscribe({
         next: (status) => {
+          console.log("gaa")
           this._tokenService.onSignOut();
         },
         error: (message) => {
+          console.log(message)
         }
       });
   }

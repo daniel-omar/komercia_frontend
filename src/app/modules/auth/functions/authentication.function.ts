@@ -1,12 +1,26 @@
+import { inject } from '@angular/core';
+import { AuthStatus } from '@auth/enums/auth-status.enum';
 import { User } from '@auth/interfaces/user.interface';
 import { Roles } from '@shared/enums';
+import { SafeStorageService } from '@shared/services/safe-storage.service';
 
 const enumRole: typeof Roles = Roles;
 
-export const onAuthenticationSaveStorage = (user: User, token: string): void => {
+export const onAuthenticationSaveStorage = (user: User, token: string, refresh_token: string, _safeStorageService: SafeStorageService): void => {
 
-    sessionStorage.setItem('loginUsuario', JSON.stringify(user));
-    sessionStorage.setItem('token', token);
+    // sessionStorage.setItem('loginUsuario', JSON.stringify(user));
+    // sessionStorage.setItem('token', token);
+    // sessionStorage.setItem('authStatus', AuthStatus.authenticated);
+    _safeStorageService.setItem('loginUsuario', JSON.stringify(user));
+    _safeStorageService.setItem('token', token);
+    _safeStorageService.setItem('refresh_token', refresh_token);
+    _safeStorageService.setItem('authStatus', AuthStatus.authenticated);
+
+}
+
+export const onRefreshSaveStorage = (token: string, _safeStorageService: SafeStorageService): void => {
+
+    _safeStorageService.setItem('token', token);
 
 }
 

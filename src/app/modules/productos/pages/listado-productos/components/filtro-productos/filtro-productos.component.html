@@ -1,0 +1,55 @@
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Filtrar
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <form [formGroup]="formSearch" (ngSubmit)="submit()">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Nombre producto</mat-label>
+                                        <input matInput type="text" placeholder="Nombre" formControlName="nombre">
+                                    </mat-form-field>
+                                    <!-- <label for="nombre" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" formControlName="nombre"> -->
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field appearance="outline">
+                                        <mat-select formControlName="ids_categoria_producto"
+                                            placeholder="Seleccionar Categoria Producto" multiple #select>
+                                            <mat-option #allSelectOption [value]="0"
+                                                (click)="toggleAllSelection('ids_categoria_producto')"
+                                                class="allSelectOption">
+                                                <strong class="text-black">Seleccionar
+                                                    todos</strong>
+                                            </mat-option>
+
+                                            <mat-option *ngFor="let categoryProduct of categorysProduct"
+                                                [value]="categoryProduct.id_categoria_producto"
+                                                (click)="optionClick('ids_categoria_producto')">{{categoryProduct.nombre_categoria}}</mat-option>
+
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-12 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary">Buscar</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

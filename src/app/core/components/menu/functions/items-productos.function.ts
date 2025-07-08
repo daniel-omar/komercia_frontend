@@ -9,8 +9,18 @@ export function buildConfigProductos(menuRoleService: MenuRoleService): IMenu {
         visible: menuRoleService.onVisibleProductos(),
         subitems: [
             {
-                text: "Creación de códigos de productos",
-                url: "/productos/codigo-materiales",
+                text: "Creación de producto",
+                url: "/productos/nuevo-producto",
+                visible: true
+            },
+            {
+                text: "Listado de productos",
+                url: "/productos/listado-productos",
+                visible: true
+            },
+            {
+                text: "Creación masiva de productos",
+                url: "/productos/carga-productos",
                 visible: true
             }
         ]

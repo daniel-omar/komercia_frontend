@@ -6,7 +6,8 @@ import {
     buildConfigCliente,
     buildConfigReportes,
     buildConfigProductos,
-    getVisibleMenuItems
+    getVisibleMenuItems,
+    buildConfigVentas
 } from '@core/components/menu/functions';
 
 import { MenuRoleService } from '@core/services/menu-role.service';
@@ -23,8 +24,9 @@ export class MenuService {
         const menu: IMenu[] = [
             buildConfigAdministracion(this._menuRoleService),
             buildConfigReportes(this._menuRoleService),
-            buildConfigCliente(this._menuRoleService),
-            buildConfigProductos(this._menuRoleService)
+            // buildConfigCliente(this._menuRoleService),
+            buildConfigProductos(this._menuRoleService),
+            buildConfigVentas(this._menuRoleService)
         ];
 
         return getVisibleMenuItems(menu);

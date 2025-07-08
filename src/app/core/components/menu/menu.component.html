@@ -17,20 +17,21 @@
                         <li *ngFor="let subitem of item.subitems" [ngClass]="{'is-only-selected': subitem.url }">
 
                             <a [routerLink]="subitem.url" [routerLinkActive]="subitem.url ? 'is-active': ''"
-                                [routerLinkActiveOptions]="{exact: true}" (click)="null">{{subitem.text}}
+                                [routerLinkActiveOptions]="{exact: true}" (click)="null"
+                                style="text-align:center !important;">{{subitem.text}}
                             </a>
 
                             <ul>
 
-                                <div class="submenu_div"
+                                <div class="submenu_div "
                                     [ngClass]="{'is-scroleable': isScroleableSub(subitem.subitems) }">
 
                                     <li *ngFor="let subsubitem of subitem.subitems">
 
                                         <a [routerLink]="subsubitem.url"
                                             [routerLinkActive]="subsubitem.url ? 'is-active': ''"
-                                            [routerLinkActiveOptions]="{exact: true}"
-                                            (click)="null">{{subsubitem.text}}</a>
+                                            [routerLinkActiveOptions]="{exact: true}" (click)="null"
+                                            style="text-align:center !important;">{{subsubitem.text}}</a>
                                     </li>
 
                                 </div>

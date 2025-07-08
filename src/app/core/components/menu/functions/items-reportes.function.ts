@@ -9,16 +9,9 @@ export function buildConfigReportes(menuRoleService: MenuRoleService): IMenu {
         visible: menuRoleService.onVisibleReportes(),
         subitems: [
             {
-                text: "Ventas",
-                url: "",
-                visible: true,
-                subitems: [
-                    {
-                        text: "Reporte Ventas",
-                        url: "/reportes/ventas/detallado-ventas",
-                        visible: true
-                    }
-                ]
+                text: "Reporte Ventas",
+                url: "/reportes/reporte-ventas",
+                visible: true
             }
 
         ]

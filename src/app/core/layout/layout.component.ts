@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { MenuComponent } from "../components/menu/menu.component";
-import { BreadcrumbComponent } from "../components/breadcrumb/breadcrumb.component";
 import { LoaderComponent } from "@shared/components/loader/loader.component";
 import { RouterOutlet } from '@angular/router';
 import { MenuService } from '@core/services/menu.service';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '@core/components/navbar/navbar.component';
-import { SidebarComponent } from "../components/sidebar/sidebar.component";
+import { SidebarComponent } from "@core/components/sidebar/sidebar.component";
+import { BreadcrumbComponent } from "@core/components/breadcrumb/breadcrumb.component";
 
 @Component({
   selector: 'app-layout',
@@ -16,11 +16,11 @@ import { SidebarComponent } from "../components/sidebar/sidebar.component";
     // BreadcrumbComponent,
     NavbarComponent,
     SidebarComponent,
-
     LoaderComponent,
     RouterOutlet,
-    SidebarComponent
-  ],
+    SidebarComponent,
+    BreadcrumbComponent
+],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })

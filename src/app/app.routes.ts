@@ -11,6 +11,9 @@ import { AuthInterceptor, AuthInterceptorProvider } from '@auth/interceptors/aut
 
 import { isAuthenticatedGuard } from '@core/guards/is-authenticated.guard';
 import { AuthService } from '@auth/services/auth.service';
+import { ListadoProductosComponent } from './modules/productos/pages/listado-productos/listado-productos.component';
+import { ProductsInterceptor } from './modules/productos/interceptors/products.interceptor';
+import { FormularioProductoComponent } from './modules/productos/pages/formulario-producto/formulario-producto.component';
 
 export const routes: Routes = [
     {
@@ -18,7 +21,7 @@ export const routes: Routes = [
         component: LayoutComponent,
         // canMatch: [isAuthenticatedGuard],
         children: [
-            { path: '', pathMatch: 'full',canMatch: [isAuthenticatedGuard], loadComponent: () => import('@home/home.component').then(m => m.HomeComponent) },
+            { path: '', pathMatch: 'full', canMatch: [isAuthenticatedGuard], loadComponent: () => import('@home/home.component').then(m => m.HomeComponent) },
         ]
     },
     {
@@ -46,6 +49,22 @@ export const routes: Routes = [
                     { path: 'tipo-usuario', title: 'Tipo Usuario', component: TipoUsuarioComponent },
                 ]
             },
+            // { path: '**', redirectTo: 'auth' }
+        ]
+    },
+    {
+        path: 'productos',
+        data: { breadcrumb: 'Productos' },
+        canMatch: [isAuthenticatedGuard],
+        component: LayoutComponent,
+        providers: [
+            provideHttpClient(withInterceptorsFromDi()),
+            { provide: HTTP_INTERCEPTORS, useClass: ProductsInterceptor, multi: true },
+        ],
+        children: [
+            { path: 'listado-productos', data: { breadcrumb: 'Listado Productos' }, title: 'Productos', component: ListadoProductosComponent },
+            { path: 'nuevo-producto', data: { breadcrumb: 'Nuevo Producto' }, title: 'Productos', component: FormularioProductoComponent },
+            { path: 'edicion-producto', data: { breadcrumb: 'Edicion Producto' }, title: 'Productos', component: FormularioProductoComponent },
             // { path: '**', redirectTo: 'auth' }
         ]
     },
