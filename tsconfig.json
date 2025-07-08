@@ -37,7 +37,8 @@
       "@assets/*": [
         "src/assets/*"
       ],
-    }
+    },
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

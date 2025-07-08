@@ -1,0 +1,14 @@
+<div class="row mt-2">
+    <div class="col-12 d-flex justify-content-end">
+        <button mat-stroked-button extended (click)="goCreateSale()">
+            Crear producto
+            <mat-icon class="icon-large">chevron_right</mat-icon>
+        </button>
+    </div>
+</div>
+<listado-filtro-ventas (search)="searchByFilters($event)"></listado-filtro-ventas>
+<listado-tabla-ventas *ngIf="(salesResponseObservable$ | async) as salesResponse" [salesResponse]="salesResponse"
+    [tableProperties]="{
+visibleEdit: true,
+message_no_data: 'No hay información'
+}" (changePage)="searchByPaginator($event)"></listado-tabla-ventas>

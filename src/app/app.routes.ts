@@ -15,6 +15,8 @@ import { ListadoProductosComponent } from './modules/productos/pages/listado-pro
 import { ProductsInterceptor } from './modules/productos/interceptors/products.interceptor';
 import { FormularioProductoComponent } from './modules/productos/pages/formulario-producto/formulario-producto.component';
 import { CargaProductosComponent } from './modules/productos/pages/carga-productos/carga-productos.component';
+import { ListadoVentasComponent } from './modules/ventas/pages/listado-ventas/listado-ventas.component';
+import { NuevaVentaComponent } from './modules/ventas/pages/nueva-venta/nueva-venta.component';
 
 export const routes: Routes = [
     {
@@ -67,6 +69,21 @@ export const routes: Routes = [
             { path: 'nuevo-producto', data: { breadcrumb: 'Nuevo Producto' }, title: 'Productos', component: FormularioProductoComponent },
             { path: 'edicion-producto/:id', data: { breadcrumb: 'Edicion Producto' }, title: 'Productos', component: FormularioProductoComponent },
             { path: 'carga-productos', data: { breadcrumb: 'Carga Productos' }, title: 'Productos', component: CargaProductosComponent },
+            // { path: '**', redirectTo: 'auth' }
+        ]
+    },
+    {
+        path: 'ventas',
+        data: { breadcrumb: 'Ventas' },
+        canMatch: [isAuthenticatedGuard],
+        component: LayoutComponent,
+        providers: [
+            provideHttpClient(withInterceptorsFromDi()),
+            { provide: HTTP_INTERCEPTORS, useClass: ProductsInterceptor, multi: true },
+        ],
+        children: [
+            { path: 'listado-ventas', data: { breadcrumb: 'Listado Ventas' }, title: 'Ventas', component: ListadoVentasComponent },
+            { path: 'nueva-venta', data: { breadcrumb: 'Nueva Venta' }, title: 'Ventas', component: NuevaVentaComponent },
             // { path: '**', redirectTo: 'auth' }
         ]
     },

@@ -9,14 +9,14 @@ export function buildConfigVentas(menuRoleService: MenuRoleService): IMenu {
         visible: menuRoleService.onVisibleReportes(),
         subitems: [
             {
-                text: "Nueva Venta",
-                url: "",
-                visible: true,
+                text: "Nueva venta",
+                url: "/ventas/nueva-venta",
+                visible: true
             },
             {
-                text: "Registro de ventas",
-                url: "",
-                visible: true,
+                text: "Listado de ventas",
+                url: "/ventas/listado-ventas",
+                visible: true
             }
         ]
     }
