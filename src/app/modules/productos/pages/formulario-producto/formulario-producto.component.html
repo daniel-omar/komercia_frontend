@@ -11,6 +11,9 @@
                             <mat-form-field appearance="outline">
                                 <mat-label>Nombre</mat-label>
                                 <input matInput type="text" placeholder="Nombre" formControlName="nombre_producto">
+                                @if (isInvalidField("nombre_producto")) {
+                                <mat-error> {{getFieldError('nombre_producto')}}</mat-error>
+                                }
                             </mat-form-field>
                         </div>
                         <div class="col-md-7 col-sm-12">
@@ -22,18 +25,24 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-md-4 col-sm-12">
                             <mat-form-field appearance="outline">
                                 <mat-label>Precio compra</mat-label>
                                 <input matInput type="number" placeholder="Precio compra"
                                     formControlName="precio_compra">
+                                @if (isInvalidField("precio_compra")) {
+                                <mat-error> {{getFieldError('precio_compra')}}</mat-error>
+                                }
                             </mat-form-field>
                         </div>
                         <div class="col-md-4 col-sm-12">
                             <mat-form-field appearance="outline">
                                 <mat-label>Precio venta</mat-label>
                                 <input matInput type="number" placeholder="Precio venta" formControlName="precio_venta">
+                                @if (isInvalidField("precio_venta")) {
+                                <mat-error> {{getFieldError('precio_venta')}}</mat-error>
+                                }
                             </mat-form-field>
                         </div>
                         <div class="col-md-4 col-sm-12">
@@ -43,6 +52,9 @@
                                     <mat-option *ngFor="let categoryProduct of categorysProduct"
                                         [value]="categoryProduct.id_categoria_producto">{{categoryProduct.nombre_categoria}}</mat-option>
                                 </mat-select>
+                                @if (isInvalidField("id_categoria_producto")) {
+                                <mat-error> {{getFieldError('id_categoria_producto')}}</mat-error>
+                                }
                             </mat-form-field>
                         </div>
                     </div>

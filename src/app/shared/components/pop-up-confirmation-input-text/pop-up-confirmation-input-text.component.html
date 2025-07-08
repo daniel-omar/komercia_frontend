@@ -1,0 +1,29 @@
+<div class="dialog__content">
+    <form [formGroup]="formTemplate">
+        <div class="dialog__content__button__header">
+            <button mat-icon-button [mat-dialog-close]="false" mat-dialog-close color="accent">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+        <div class="dialog__content__message">
+
+            <h2>{{data.title}}</h2>
+
+        </div>
+        
+        <div class="dialog__content__description">
+            <mat-form-field appearance="fill">
+                <mat-label>{{data.labelText}}</mat-label>
+                <input matInput type="text" formControlName="description" [placeholder]="data.labelTextPlaceholder">
+            </mat-form-field>
+        </div>
+
+        <div class="dialog__content__buttons">
+            <button type="button" [mat-dialog-close]="false" mat-button>Cancelar</button>
+            <button type="submit" [class]="data.buttonConfirmColor" [mat-dialog-close]="form['description'].value"
+                [disabled]="!formTemplate.valid" mat-button>{{
+                data.buttonConfirmText }}</button>
+        </div>
+    </form>
+</div>

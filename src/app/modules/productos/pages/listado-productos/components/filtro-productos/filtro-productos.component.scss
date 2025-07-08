@@ -2,3 +2,13 @@ mat-form-field {
     width: 100% !important;
     min-width: 200px !important;
 }
+
+.accordion-button {
+    background-color: var(--mdc-text-button-label-text-color, var(--mat-sys-primary)) !important;
+    color: #fff;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--mdc-text-button-label-text-color, var(--mat-sys-primary)) !important;
+    color: #fff;
+}

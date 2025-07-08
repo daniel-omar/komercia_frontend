@@ -1,0 +1,19 @@
+<div mat-dialog-title>
+    <div class="row" style="margin-top: -20px !important;">
+        <div class="col-12 d-flex justify-content-center">
+            <mat-icon class="icon-large">check_circle</mat-icon>
+        </div>
+    </div>
+</div>
+<mat-dialog-content class="mat-typography">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            <h5> {{ message }}</h5>
+        </div>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Ok</button>
+    <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+</mat-dialog-actions>

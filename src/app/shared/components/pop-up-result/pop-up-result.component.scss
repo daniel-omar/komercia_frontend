@@ -1,0 +1,14 @@
+mat-icon.icon-large {
+    font-size: 60px; // Tamaño del ícono
+    line-height: 1; // Evita que se corte por alto
+    display: inline-flex; // Asegura que se respete el tamaño
+    align-items: center; // Centrado vertical
+    justify-content: center;
+    vertical-align: middle; // Alineación con texto
+    color: rgb(26, 124, 26);
+}
+
+mat-icon {
+    height: 100% !important;
+    width: 100% !important;
+}

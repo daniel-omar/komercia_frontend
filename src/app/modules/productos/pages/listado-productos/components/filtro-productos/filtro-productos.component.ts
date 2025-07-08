@@ -12,6 +12,7 @@ import { DebouncerSelect } from '@shared/interfaces/debouncer-select.interface';
 
 import { ProductCategoryService } from 'src/app/modules/productos/services/product_category.service';
 import { ProductsFilter } from 'src/app/modules/productos/interfaces/products-filter.interface';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'listado-filtro-productos',
@@ -23,6 +24,7 @@ import { ProductsFilter } from 'src/app/modules/productos/interfaces/products-fi
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule
   ],
   providers: [
     ProductCategoryService

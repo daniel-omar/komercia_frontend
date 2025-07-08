@@ -24,7 +24,7 @@ export class ValidatorsService {
     return valid ? null : { invalidPassword: true };
   }
 
-  isValidField(formGroup: FormGroup, field: string): boolean | null {
+  isInvalidField(formGroup: FormGroup, field: string): boolean | null {
     return formGroup.controls[field].errors && formGroup.controls[field].touched;
   }
 
@@ -46,25 +46,41 @@ export class ValidatorsService {
     }
   }
 
+  isFieldOneGreaterFieldTwo(field1: string, field2: string) {
+    return (formGroup: FormGroup): ValidationErrors | null => {
+      const fieldValue1 = parseFloat(formGroup.get(field1)?.value || '0');
+      const fieldValue2 = parseFloat(formGroup.get(field2)?.value || '0');
+
+      if (fieldValue1 >= fieldValue2) {
+        formGroup.get(field2)?.setErrors({
+          notGreater: true
+        })
+        return {
+          notGreater: true
+        }
+      }
+      formGroup.get(field2)?.setErrors(null)
+      return null
+    }
+  }
+
   getFieldError(formGroup: FormGroup, field: string): string | null {
 
     if (!formGroup.controls[field]) return null;
 
     const errors = formGroup.controls[field].errors || {};
-    console.log(errors)
     for (const key of Object.keys(errors)) {
       switch (key) {
         case 'required':
           return 'Este campo es requerido';
-
         case 'minlength':
           return `Mínimo ${errors['minlength'].requiredLength} caracters.`;
-
+        case 'min':
+          return `Mínimo ${errors['min'].min}.`;
         case 'emailTaken':
           return `El email ya ha sido tomado`;
-
-        case 'pattern':
-          return `El email no cumple con tipo de formato`;
+        case 'notGreater':
+          return `El precio venta debe ser mayor al precio compra`;
       }
     }
 

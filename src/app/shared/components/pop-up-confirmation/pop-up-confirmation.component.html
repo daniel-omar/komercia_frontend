@@ -1,0 +1,34 @@
+<div class="dialog__content">
+    <div class="dialog__content__button__header">
+        <button mat-icon-button [mat-dialog-close]="false" mat-dialog-close color="primary">
+            <mat-icon svgIcon="close_circle"></mat-icon>
+        </button>
+    </div>
+
+    <img *ngIf="data.icon" class="dialog__content__image" [src]="data.icon" [alt]="data.icon">
+
+    <div class="dialog__content__message">
+
+        <span>{{ data.title }}</span>
+        <span *ngIf="data.subtitle" class="dialog__content__message--subtitle">{{ data.subtitle }}</span>
+
+    </div>
+
+    <div class="dialog__content__buttons">
+        
+        <button 
+            type="button" 
+            [class]="data.buttonCancelColor || 'color-accent'" 
+            [mat-dialog-close]="false"
+            mat-flat-button>{{ data.buttonCancelText || 'CANCELAR' }}
+        </button>
+
+        <button 
+            type="submit" 
+            [class]="data.buttonConfirmColor || 'color-primary'" 
+            [mat-dialog-close]="true" 
+            mat-flat-button>{{ data.buttonConfirmText || 'ACEPTAR' }}
+        </button>
+    </div>
+
+</div>

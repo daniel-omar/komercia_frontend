@@ -1,0 +1,97 @@
+@use "mixins/flex-layout-media-queries.mixin" as *;
+
+::ng-deep .custom-pop-up-confirmation {
+    mat-dialog-container {
+        box-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+        border-radius: 2rem;
+        padding: 1rem 2.4rem 4rem 2.4rem;
+        width: 50rem;
+    }
+}
+
+.dialog__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.563rem;
+
+}
+
+.dialog__content__message,
+.dialog__content__message.span {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem;
+    color: #3c4a3e;
+    font-family: "avenir-heavy" !important;
+    font-size: 2.2rem;
+    font-weight: bold;
+    letter-spacing: 0.07rem;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.dialog__content__message--subtitle {
+    font-weight: 100;
+    font-size: 1.9rem;
+    margin-top: .3rem;
+}
+
+.dialog__content__button__header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: .8rem;
+
+    mat-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+.dialog__content__image {
+    display: block;
+    max-width: 100%;
+    margin: auto;
+    width: 8rem;
+    height: 8rem;
+    margin-bottom: 1rem;
+    filter: brightness(0) saturate(100%) invert(21%) sepia(10%) saturate(526%) hue-rotate(165deg) brightness(100%) contrast(90%);
+}
+
+.dialog__content__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 4.5rem;
+    margin-top: 1.5rem;
+}
+
+@include xs {
+
+    .dialog__content__message,
+    .dialog__content__message.span {
+        padding: 0 12px;
+    }
+
+    .dialog__content__image {
+        width: 7rem;
+        height: 7rem;
+    }
+
+    .dialog__content__message {
+        font-size: 2rem;
+    }
+
+    .dialog__content__buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .dialog__content__buttons button:first-child {
+        order: 1;
+    }
+
+    .dialog__content__button {
+        width: 100%;
+        font-size: 1.2rem;
+    }
+}

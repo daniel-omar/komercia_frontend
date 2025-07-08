@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ProductService } from '../../services/product.service';
 import { ModalService } from '@shared/services/modal.service';
 import { Router } from '@angular/router';
+import { ValidatorsService } from '@shared/services/validators.service';
 
 @Component({
   selector: 'app-formulario-producto',
@@ -44,6 +45,7 @@ export class FormularioProductoComponent {
   private _productCategoryService = inject(ProductCategoryService);
   private _productService = inject(ProductService);
   private _modalService = inject(ModalService);
+  private _validatorsService = inject(ValidatorsService);
   private readonly router = inject(Router)
 
 
@@ -56,11 +58,15 @@ export class FormularioProductoComponent {
 
   private initFormFilters(): void {
     this.formProduct = this.formBuilder.group({
-      nombre_producto: ['', [Validators.required]],
-      descripcion_producto: ['', [Validators.required]],
+      nombre_producto: ['', [Validators.required, Validators.minLength(4)]],
+      descripcion_producto: [''],
       precio_compra: [0, [Validators.required, Validators.min(1)]],
       precio_venta: [0, [Validators.required, Validators.min(1)]],
       id_categoria_producto: [0, [Validators.required, Validators.min(1)]]
+    }, {
+      validators: [
+        this._validatorsService.isFieldOneGreaterFieldTwo('precio_compra', 'precio_venta')
+      ]
     })
   }
 
@@ -81,7 +87,9 @@ export class FormularioProductoComponent {
 
     const { nombre_producto, descripcion_producto, precio_compra, precio_venta, id_categoria_producto } = this.formProduct.value;
 
-    await lastValueFrom(this._productService.create({ nombre_producto, descripcion_producto, precio_compra, precio_venta, id_categoria_producto }));
+    const result = await lastValueFrom(this._productService.create({ nombre_producto: nombre_producto.trim(), descripcion_producto: descripcion_producto.trim(), precio_compra, precio_venta, id_categoria_producto }));
+
+    if (!result) return;
 
     this._modalService.openDialog({ data: 'Se guardo el producto' }, (resultDlg) => {
       this.router.navigate(["productos/listado-productos"]);
@@ -89,4 +97,11 @@ export class FormularioProductoComponent {
 
   }
 
+  isInvalidField(field: string) {
+    return this._validatorsService.isInvalidField(this.formProduct, field);
+  }
+
+  getFieldError(field: string) {
+    return this._validatorsService.getFieldError(this.formProduct, field);
+  }
 }
