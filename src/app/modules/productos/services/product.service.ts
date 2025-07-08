@@ -31,4 +31,20 @@ export class ProductService {
       );
   }
 
+  getById(idProducto: number): Observable<Product> {
+
+    const url = `/products/product/find?id_producto=${idProducto}`;
+    return this._http.get<ResponseData<Product>>(url)
+      .pipe(
+        map(({ data }) => {
+          console.log(data)
+          return data;
+        }),
+        catchError((error: HttpErrorResponse) => {
+          console.log(error)
+          return throwError(() => error.error.message)
+        })
+      );
+  }
+
 }

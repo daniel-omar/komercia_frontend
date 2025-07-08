@@ -11,4 +11,6 @@ export interface Product {
     categoria: ProductCategory;
     cantidad_disponible: string;
     es_activo: boolean;
+    fecha_hora_registro: Date;
+    fecha_hora_actualizacion: Date;
 }

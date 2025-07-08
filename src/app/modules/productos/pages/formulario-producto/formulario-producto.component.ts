@@ -12,8 +12,10 @@ import { lastValueFrom } from 'rxjs';
 import { MatSelectModule } from '@angular/material/select';
 import { ProductService } from '../../services/product.service';
 import { ModalService } from '@shared/services/modal.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ValidatorsService } from '@shared/services/validators.service';
+import { ActivatedRoute } from '@angular/router';
+import { Product } from '../../interfaces/product.interface';
 
 @Component({
   selector: 'app-formulario-producto',
@@ -27,7 +29,8 @@ import { ValidatorsService } from '@shared/services/validators.service';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    RouterModule
   ],
   providers: [
     ProductCategoryService,
@@ -47,12 +50,27 @@ export class FormularioProductoComponent {
   private _modalService = inject(ModalService);
   private _validatorsService = inject(ValidatorsService);
   private readonly router = inject(Router)
-
+  private readonly activatedRoute = inject(ActivatedRoute)
+  private idProduct?: number;
+  public editMode: boolean = false;
+  private product!: Product;
 
   ngOnInit() {
     console.log("filtro")
     this.initFormElements();
     this.initFormFilters();
+
+    this.activatedRoute.paramMap.subscribe(params => {
+      const id = params.get('id');
+
+      if (id) {
+        this.idProduct = +id;
+        this.editMode = true;
+        this.getById(this.idProduct); // 👉 lógica para obtener datos
+      } else {
+        this.editMode = false;
+      }
+    });
 
   }
 
@@ -81,6 +99,11 @@ export class FormularioProductoComponent {
     // console.log(this.categorias_producto);
   }
 
+  async getById(idProducto: number) {
+    this.product = await lastValueFrom(this._productService.getById(idProducto));
+    this.formProduct.patchValue(this.product);
+  }
+
 
   async submit() {
     if (!this.formProduct.valid) return;
@@ -103,5 +126,9 @@ export class FormularioProductoComponent {
 
   getFieldError(field: string) {
     return this._validatorsService.getFieldError(this.formProduct, field);
+  }
+
+  goListProducts() {
+    this.router.navigate(["productos/listado-productos"]);
   }
 }

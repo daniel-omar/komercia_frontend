@@ -64,7 +64,7 @@ export const routes: Routes = [
         children: [
             { path: 'listado-productos', data: { breadcrumb: 'Listado Productos' }, title: 'Productos', component: ListadoProductosComponent },
             { path: 'nuevo-producto', data: { breadcrumb: 'Nuevo Producto' }, title: 'Productos', component: FormularioProductoComponent },
-            { path: 'edicion-producto', data: { breadcrumb: 'Edicion Producto' }, title: 'Productos', component: FormularioProductoComponent },
+            { path: 'edicion-producto/:id', data: { breadcrumb: 'Edicion Producto' }, title: 'Productos', component: FormularioProductoComponent },
             // { path: '**', redirectTo: 'auth' }
         ]
     },

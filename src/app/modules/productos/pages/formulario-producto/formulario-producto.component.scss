@@ -7,3 +7,17 @@ mat-form-field {
     margin-top: 0.5rem !important;
     margin-bottom: 1rem !important;
 }
+
+mat-icon.icon-large {
+    font-size: 30px; // Tamaño del ícono
+    line-height: 1; // Evita que se corte por alto
+    display: inline-flex; // Asegura que se respete el tamaño
+    align-items: center; // Centrado vertical
+    justify-content: center;
+    vertical-align: middle; // Alineación con texto
+}
+
+mat-icon {
+    height: 100% !important;
+    width: 100% !important;
+}

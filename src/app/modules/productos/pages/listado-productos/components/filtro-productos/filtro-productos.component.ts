@@ -50,7 +50,7 @@ export class FiltroProductosComponent {
     console.log("filtro")
     this.initFormElements();
     this.initFormFilters();
-
+    this.submit();
   }
 
   private initFormFilters(): void {
@@ -67,10 +67,8 @@ export class FiltroProductosComponent {
   }
 
   submit() {
-    if (!this.formSearch.valid) return;
 
     const { nombre, ids_categoria_producto } = this.formSearch.value;
-
     this.onSearch({ nombre_producto: nombre, ids_categoria: ids_categoria_producto, es_activo: true });
   }
 

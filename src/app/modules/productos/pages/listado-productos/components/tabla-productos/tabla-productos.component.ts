@@ -1,8 +1,9 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, ViewChild } from '@angular/core';
 import { MatPaginatorIntl, MatPaginatorModule, PageEvent } from "@angular/material/paginator";
 import { MatTableDataSource, MatTableModule } from "@angular/material/table";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 
 import { Pagination } from '@shared/interfaces/pagination.interface';
 import { TableColumnDefinition } from '@shared/interfaces/table-column-definition.interface';
@@ -16,6 +17,8 @@ import { TABLE_PRODUCTOS_DISPLAYEDCOLUMNS } from 'src/app/modules/productos/cons
 
 import { ProductsService } from 'src/app/modules/productos/services/products.service';
 import { CommonModule } from '@angular/common';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'listado-tabla-productos',
@@ -25,8 +28,8 @@ import { CommonModule } from '@angular/common';
     MatIconModule,
     MatPaginatorModule,
     MatTableModule,
-    MatTooltipModule
-
+    MatTooltipModule,
+    MatSortModule
   ],
   templateUrl: './tabla-productos.component.html',
   styleUrl: './tabla-productos.component.scss'
@@ -37,6 +40,8 @@ export class TablaProductosComponent {
   public columnsDefinition: TableColumnDefinition[] = [];
   public dataSource!: MatTableDataSource<Product>;
   public paginador: Paginator = new Paginator();
+  private _liveAnnouncer = inject(LiveAnnouncer);
+  private readonly router = inject(Router)
 
   @Input() tableProperties!: TableProperties;
   @Input() set productosResponse(productsResponse: ProductsResponse) {
@@ -49,13 +54,20 @@ export class TablaProductosComponent {
   @Output("changePage")
   public changePage: EventEmitter<Paginator> = new EventEmitter()
 
+  @ViewChild(MatSort) sort!: MatSort;
+
   ngOnInit() {
+  }
+
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   setColumnsDefinition(): void {
     this.displayedColumns.forEach((column) => {
       let show: boolean = true;
-      if (["cemento"].indexOf(column.toLowerCase()) >= 0) show = false;
+      if (["accion"].indexOf(column.toLowerCase()) >= 0) show = false;
 
       this.columnsDefinition.push({
         id: column,
@@ -85,6 +97,19 @@ export class TablaProductosComponent {
 
   public onHideDisplayedPaginator(paginador: Paginator): boolean {
     return this.paginador.onHideDisplayedPaginator(paginador);
+  }
+
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
+
+  onEditProduct(element: Product) {
+    console.log(element);
+    this.router.navigate(["productos/edicion-producto", element.id_producto]);
   }
 
 }

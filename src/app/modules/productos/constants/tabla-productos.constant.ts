@@ -5,6 +5,7 @@ export const TABLE_PRODUCTOS_DISPLAYEDCOLUMNS: string[] = [
   'precio_venta',
   'categoria',
   'cantidad_disponible',
+  'fecha_hora_registro',
   'es_activo',
   'accion'
 ]
