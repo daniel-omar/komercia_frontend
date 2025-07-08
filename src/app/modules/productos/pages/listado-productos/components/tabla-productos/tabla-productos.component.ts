@@ -19,6 +19,7 @@ import { ProductsService } from 'src/app/modules/productos/services/products.ser
 import { CommonModule } from '@angular/common';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Router } from '@angular/router';
+import { NoDataComponent } from '@shared/components/no-data/no-data.component';
 
 @Component({
   selector: 'listado-tabla-productos',
@@ -29,7 +30,9 @@ import { Router } from '@angular/router';
     MatPaginatorModule,
     MatTableModule,
     MatTooltipModule,
-    MatSortModule
+    MatSortModule,
+
+    NoDataComponent
   ],
   templateUrl: './tabla-productos.component.html',
   styleUrl: './tabla-productos.component.scss'

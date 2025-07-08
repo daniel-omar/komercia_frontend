@@ -11,18 +11,19 @@ import { Carga, CargaResponse } from '@shared/interfaces/carga.interface';
 import { TableColumnDefinition } from '@shared/interfaces/table-column-definition.interface';
 import { TableProperties } from '@shared/interfaces/table-properties.interface';
 import { TABLE_DETALLE_CARGA_PRODUCTOS_DISPLAYEDCOLUMNS } from 'src/app/modules/productos/constants/tabla-detalle-carga-producto.constant';
+import { NoDataComponent } from "@shared/components/no-data/no-data.component";
 
 @Component({
   selector: 'tabla-detalle-carga-productos',
   imports: [
     CommonModule,
-
     MatIconModule,
     MatPaginatorModule,
     MatTableModule,
     MatTooltipModule,
-    MatSortModule
-  ],
+    MatSortModule,
+    NoDataComponent
+],
   templateUrl: './tabla-detalle-carga.component.html',
   styleUrl: './tabla-detalle-carga.component.scss'
 })
