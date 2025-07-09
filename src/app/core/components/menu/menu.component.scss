@@ -41,7 +41,6 @@
     background-color: #212429;
 
     &>img {
-
         filter: brightness(0) saturate(100%) invert(83%) sepia(21%) saturate(2872%) hue-rotate(347deg) brightness(96%) contrast(92%);
 
     }
@@ -126,4 +125,8 @@
 .is-scroleable::-webkit-scrollbar-thumb {
     border-radius: 5px;
     background: #ebb11a;
+}
+
+.menu__item {
+    padding-left: 10px !important;
 }

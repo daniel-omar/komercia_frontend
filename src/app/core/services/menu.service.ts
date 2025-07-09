@@ -23,7 +23,7 @@ export class MenuService {
 
         const menu: IMenu[] = [
             buildConfigAdministracion(this._menuRoleService),
-            buildConfigReportes(this._menuRoleService),
+            // buildConfigReportes(this._menuRoleService),
             // buildConfigCliente(this._menuRoleService),
             buildConfigProductos(this._menuRoleService),
             buildConfigVentas(this._menuRoleService)
