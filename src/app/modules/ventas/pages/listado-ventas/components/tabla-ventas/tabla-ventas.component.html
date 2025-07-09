@@ -3,51 +3,80 @@
         <section class="table_container">
             <table *ngIf="dataSource.data.length > 0" mat-table [dataSource]="dataSource" class="content__table" matSort
                 (matSortChange)="announceSortChange($event)">
-                <ng-container matColumnDef="codigo_producto" [sticky]="true">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por código">
-                        Código de obra </th>
+                <ng-container matColumnDef="id_venta" [sticky]="true">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por N°">
+                        N° venta</th>
                     <td mat-cell *matCellDef="let element">
                         <div class="content_item">
-                            {{element.codigo_producto}}
+                            {{element.id_venta}}
                         </div>
                     </td>
                 </ng-container>
 
-                <ng-container matColumnDef="nombre_producto">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por nombre">
-                        Nombre
+                <ng-container matColumnDef="concepto">
+                    <th mat-header-cell *matHeaderCellDef>
+                        Concepto
                     </th>
                     <td mat-cell *matCellDef="let element">
-                        {{element.nombre_producto}} </td>
-                </ng-container>
-
-                <ng-container matColumnDef="precio_compra">
-                    <th mat-header-cell *matHeaderCellDef> Precio compra</th>
-                    <td mat-cell *matCellDef="let element">
                         <div class="content_item">
-                            {{element.precio_compra }}
+                            {{element.concepto}}
                         </div>
                     </td>
                 </ng-container>
 
-                <ng-container matColumnDef="precio_venta">
-                    <th mat-header-cell *matHeaderCellDef> Precio venta</th>
+                <ng-container matColumnDef="tipo_pago">
+                    <th mat-header-cell *matHeaderCellDef>Tipo pago</th>
                     <td mat-cell *matCellDef="let element">
                         <div class="content_item">
-                            {{element.precio_venta }}
+                            {{element.tipo_pago.nombre_tipo_pago }}
                         </div>
                     </td>
                 </ng-container>
 
-                <ng-container matColumnDef="categoria">
-                    <th mat-header-cell *matHeaderCellDef> Categoria </th>
-                    <td mat-cell *matCellDef="let element"> {{element.categoria.nombre_categoria}}
+                <ng-container matColumnDef="tiene_descuento">
+                    <th mat-header-cell *matHeaderCellDef>Tiene Descuento</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="content_item">
+                            {{element.tiene_descuento?"SI":"NO" }}
+                        </div>
                     </td>
                 </ng-container>
 
-                <ng-container matColumnDef="cantidad_disponible">
-                    <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-                    <td mat-cell *matCellDef="let element"> {{element.cantidad_disponible|| '-' }}
+                <ng-container matColumnDef="tipo_descuento">
+                    <th mat-header-cell *matHeaderCellDef> Tipo descuento </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="content_item">
+                            {{element.tipo_descuento?element.tipo_descuento.nombre_tipo_descuento:"" }}
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="descuento">
+                    <th mat-header-cell *matHeaderCellDef> Descuento </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="content_item">
+                            {{element.descuento }}
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="total">
+                    <th mat-header-cell *matHeaderCellDef> Total </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="content_item">
+                            {{element.total }}
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="usuario_registro">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por fecha">
+                        Fecha y hora registro</th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="content_item">
+                            {{`${element.usuario_registro.nombre}
+                            ${element.usuario_registro.apellido_paterno}`}}
+                        </div>
                     </td>
                 </ng-container>
 
@@ -57,18 +86,6 @@
                     <td mat-cell *matCellDef="let element"> {{(element.fecha_hora_registro| date:'dd/MM/yyyy HH:mm')}}
                     </td>
                 </ng-container>
-
-                <ng-container matColumnDef="es_activo">
-                    <th mat-header-cell *matHeaderCellDef>Estado</th>
-                    <td mat-cell *matCellDef="let element"> {{(element.es_activo?"ACTIVO":"INACTIVO")}}
-                    </td>
-                </ng-container>
-
-                <!-- <ng-container matColumnDef="accion">
-                    <th mat-header-cell *matHeaderCellDef>Acción</th>
-                    <td mat-cell *matCellDef="let element">
-                    </td>
-                </ng-container> -->
 
                 <!-- </form> -->
                 <tr mat-header-row *matHeaderRowDef="getDisplayedColumns(); sticky:true"></tr>

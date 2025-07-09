@@ -10,6 +10,11 @@ import { PaymentType } from 'src/app/modules/ventas/interfaces/payment_type.inte
 import { SalesFilter } from 'src/app/modules/ventas/interfaces/sales-filter.interface';
 import { PaymentTypeService } from 'src/app/modules/ventas/services/payment_type.service';
 import { DateTime } from 'luxon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_DATE_FORMATS, MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
+import { CUSTOM_DATE_FORMATS } from '@shared/constants/custom_date.constant'; // ruta correcta
+import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+import moment from 'moment';
 
 @Component({
   selector: 'listado-filtro-ventas',
@@ -20,8 +25,14 @@ import { DateTime } from 'luxon';
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,],
-  providers: [PaymentTypeService],
+    MatButtonModule,
+    MatNativeDateModule,
+    MatDatepickerModule
+  ],
+  providers: [
+    PaymentTypeService,
+    provideMomentDateAdapter(CUSTOM_DATE_FORMATS)
+  ],
   templateUrl: './filtro-ventas.component.html',
   styleUrl: './filtro-ventas.component.scss'
 })
@@ -74,7 +85,13 @@ export class FiltroVentasComponent {
 
   submit() {
 
-    const { fecha_inicio, fecha_fin, ids_tipo_pago, ids_usuario_registro } = this.formSearch.value;
+    let { fecha_inicio, fecha_fin, ids_tipo_pago, ids_usuario_registro } = this.formSearch.value;
+    fecha_inicio = moment.isMoment(fecha_inicio)
+      ? fecha_inicio.format('YYYY-MM-DD') // si es moment, formatea
+      : fecha_inicio;
+    fecha_fin = moment.isMoment(fecha_fin)
+      ? fecha_fin.format('YYYY-MM-DD') // si es moment, formatea
+      : fecha_fin;
     this.onSearch({ fecha_inicio, fecha_fin, ids_tipo_pago, ids_usuario_registro });
   }
 

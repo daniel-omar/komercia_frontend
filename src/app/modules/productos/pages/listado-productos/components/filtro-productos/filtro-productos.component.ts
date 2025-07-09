@@ -13,6 +13,7 @@ import { DebouncerSelect } from '@shared/interfaces/debouncer-select.interface';
 import { ProductCategoryService } from 'src/app/modules/productos/services/product_category.service';
 import { ProductsFilter } from 'src/app/modules/productos/interfaces/products-filter.interface';
 import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'listado-filtro-productos',
@@ -24,7 +25,8 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [
     ProductCategoryService
@@ -115,5 +117,9 @@ export class FiltroProductosComponent {
     if (newStatus) select.options.first.select()
     else select.options.first.deselect()
 
+  }
+
+  clearField(field: string) {
+    this.formSearch.get(field)?.reset();
   }
 }

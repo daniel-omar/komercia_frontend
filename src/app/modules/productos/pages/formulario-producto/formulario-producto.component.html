@@ -59,8 +59,11 @@
                         </div>
                     </div>
 
-                    <div class="row button">
-                        <button type="submit" mat-button>{{editMode?"Actualizar":"Crear"}}</button>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-end">
+                            <button type="button" mat-stroked-button extended (click)="clear()">Limpiar</button>
+                            <button type="submit" mat-stroked-button extended>{{editMode?"Actualizar":"Crear"}}</button>
+                        </div>
                     </div>
 
                 </form>

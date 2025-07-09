@@ -14,15 +14,24 @@
                         <form [formGroup]="formSearch" (ngSubmit)="submit()">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <mat-form-field appearance="outline">
-                                        <mat-label>Fecha inicio</mat-label>
-                                        <input matInput type="date" placeholder="Nombre" formControlName="fecha_inicio">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Choose a date</mat-label>
+                                        <input matInput [max]="formSearch.get('fecha_fin')?.value"
+                                            [matDatepicker]="pickerInicio" formControlName="fecha_inicio" />
+                                        <mat-hint>MM/DD/YYYY</mat-hint>
+                                        <mat-datepicker-toggle matIconSuffix
+                                            [for]="pickerInicio"></mat-datepicker-toggle>
+                                        <mat-datepicker #pickerInicio></mat-datepicker>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
-                                    <mat-form-field appearance="outline">
-                                        <mat-label>Fecha fin</mat-label>
-                                        <input matInput type="date" placeholder="Nombre" formControlName="fecha_fin">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Choose a date</mat-label>
+                                        <input matInput [min]="formSearch.get('fecha_inicio')?.value"
+                                            [matDatepicker]="pickerFin" formControlName="fecha_fin" />
+                                        <mat-hint>MM/DD/YYYY</mat-hint>
+                                        <mat-datepicker-toggle matIconSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                                        <mat-datepicker #pickerFin></mat-datepicker>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-4">
@@ -63,7 +72,7 @@
                             </div>
                             <div class="row ">
                                 <div class="col-12 d-flex justify-content-end">
-                                    <button type="submit" mat-button>Buscar</button>
+                                    <button type="submit" mat-stroked-button extended>Buscar</button>
                                 </div>
                             </div>
                         </form>

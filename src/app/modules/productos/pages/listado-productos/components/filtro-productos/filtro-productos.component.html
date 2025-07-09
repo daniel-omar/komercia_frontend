@@ -17,6 +17,10 @@
                                     <mat-form-field appearance="outline">
                                         <mat-label>Nombre producto</mat-label>
                                         <input matInput type="text" placeholder="Nombre" formControlName="nombre">
+                                        <button matSuffix mat-icon-button aria-label="Clear" type="button"
+                                            (click)="clearField('nombre')">
+                                            <mat-icon>close</mat-icon>
+                                        </button>
                                     </mat-form-field>
                                     <!-- <label for="nombre" class="form-label">Nombre</label>
                                     <input type="text" class="form-control" id="nombre" formControlName="nombre"> -->
@@ -42,7 +46,7 @@
                             </div>
                             <div class="row ">
                                 <div class="col-12 d-flex justify-content-end">
-                                    <button type="submit" mat-button>Buscar</button>
+                                    <button type="submit" mat-stroked-button extended>Buscar</button>
                                 </div>
                             </div>
                         </form>

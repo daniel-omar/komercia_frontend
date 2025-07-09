@@ -61,7 +61,7 @@ export class TablaVentasComponent {
   setColumnsDefinition(): void {
     this.displayedColumns.forEach((column) => {
       let show: boolean = true;
-      if (["accion"].indexOf(column.toLowerCase()) >= 0) show = false;
+      if (["es_activo"].indexOf(column.toLowerCase()) >= 0) show = false;
 
       this.columnsDefinition.push({
         id: column,
@@ -72,6 +72,7 @@ export class TablaVentasComponent {
   }
 
   private initTableObra(salesResponse: SalesResponse) {
+    console.log(salesResponse?.ventas)
     this.dataSource = new MatTableDataSource(salesResponse?.ventas);
     this.setUpPaginador(salesResponse?.paginacion);
   }

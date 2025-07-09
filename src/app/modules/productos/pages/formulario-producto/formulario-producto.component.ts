@@ -131,4 +131,8 @@ export class FormularioProductoComponent {
   goListProducts() {
     this.router.navigate(["productos/listado-productos"]);
   }
+
+  clear() {
+    this.formProduct.reset();
+  }
 }
