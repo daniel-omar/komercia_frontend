@@ -3,23 +3,18 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { ResponseData } from '@shared/interfaces/response-data.interface';
-import { SalesFilter } from '../interfaces/sales-filter.interface';
-import { Pagination } from '@shared/interfaces/pagination.interface';
-import { SalesResponse } from '../interfaces/sales-response.interface';
-import { User } from '../interfaces/user.interface';
+import { Sale } from '../interfaces/sale.interface';
+import { SaleDetail } from '../interfaces/sale-detail.interface';
 
 @Injectable()
-export class SalesService {
+export class SaleService {
 
   private readonly baseUrl: string = environment.apiBaseUrl;
   private _http = inject(HttpClient);
 
-  getByFilters(filter: SalesFilter, pagination: Pagination): Observable<SalesResponse> {
-    delete pagination.total;
-    delete pagination.pages;
-
-    const url = `/sales/sale/get_by_filter_with_pagination`;
-    return this._http.post<ResponseData<SalesResponse>>(url, { filter, pagination })
+  getById(idVenta: number): Observable<Sale> {
+    const url = `/sales/sale/find?id_venta=${idVenta}`;
+    return this._http.get<ResponseData<Sale>>(url)
       .pipe(
         map(({ data }) => {
           return data;
@@ -31,10 +26,10 @@ export class SalesService {
       );
   }
 
-  getUsersByProfile(idPerfil: number): Observable<User[]> {
+  getDetailsById(idVenta: number): Observable<SaleDetail[]> {
 
-    const url = `/users/user/get_by_profile/${idPerfil}`;
-    return this._http.get<ResponseData<User[]>>(url)
+    const url = `/sales/sale/get_details/${idVenta}`;
+    return this._http.get<ResponseData<SaleDetail[]>>(url)
       .pipe(
         map(({ data }) => {
           return data;
@@ -45,4 +40,5 @@ export class SalesService {
         })
       );
   }
+
 }

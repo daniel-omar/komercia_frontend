@@ -17,6 +17,8 @@ import { FormularioProductoComponent } from './modules/productos/pages/formulari
 import { CargaProductosComponent } from './modules/productos/pages/carga-productos/carga-productos.component';
 import { ListadoVentasComponent } from './modules/ventas/pages/listado-ventas/listado-ventas.component';
 import { NuevaVentaComponent } from './modules/ventas/pages/nueva-venta/nueva-venta.component';
+import { DetalleVentaComponent } from './modules/ventas/pages/detalle-venta/detalle-venta.component';
+import { SalesInterceptor } from './modules/ventas/interceptors/sales.interceptor';
 
 export const routes: Routes = [
     {
@@ -79,11 +81,12 @@ export const routes: Routes = [
         component: LayoutComponent,
         providers: [
             provideHttpClient(withInterceptorsFromDi()),
-            { provide: HTTP_INTERCEPTORS, useClass: ProductsInterceptor, multi: true },
+            { provide: HTTP_INTERCEPTORS, useClass: SalesInterceptor, multi: true },
         ],
         children: [
             { path: 'listado-ventas', data: { breadcrumb: 'Listado Ventas' }, title: 'Ventas', component: ListadoVentasComponent },
             { path: 'nueva-venta', data: { breadcrumb: 'Nueva Venta' }, title: 'Ventas', component: NuevaVentaComponent },
+            { path: 'detalle-venta/:id', data: { breadcrumb: 'Detalle Venta' }, title: 'Ventas', component: DetalleVentaComponent },
             // { path: '**', redirectTo: 'auth' }
         ]
     },

@@ -5,9 +5,10 @@ export const TABLE_VENTAS_DISPLAYEDCOLUMNS: string[] = [
   'tiene_descuento',
   'tipo_descuento',
   'descuento',
-  'total',
+
   'usuario_registro',
-  'fecha_hora_registro'
+  'fecha_hora_registro',
+  'total'
 ]
 
 

@@ -1,0 +1,67 @@
+.mat-mdc-card {
+    background-color: white !important;
+}
+
+mat-form-field {
+    width: 100% !important;
+    min-width: 200px !important;
+}
+
+.venta-resumen {
+    padding: 1rem 1rem;
+    border-radius: 12px;
+    // background: #f9f9fc;
+    color: #1a1a1a;
+    // box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.transaccion-link {
+    font-size: 14px;
+    color: #1976d2;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.label {
+    font-size: 15px;
+    color: #5a5959;
+    margin: 6px 0 0;
+    font-weight: 500;
+}
+
+.valor {
+    margin: 0;
+    font-size: 14px;
+}
+
+.valor-importante {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin: 2px 0;
+}
+
+.detalle-linea {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.total-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0.5rem;
+    font-weight: 500;
+    font-size: 16px;
+    border-top: 1px solid #ddd;
+    margin-top: 8px;
+}

@@ -15,6 +15,9 @@ import { MAT_DATE_FORMATS, MatNativeDateModule, provideNativeDateAdapter } from 
 import { CUSTOM_DATE_FORMATS } from '@shared/constants/custom_date.constant'; // ruta correcta
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import moment from 'moment';
+import { SalesService } from 'src/app/modules/ventas/services/sales.service';
+import { User } from 'src/app/modules/ventas/interfaces/user.interface';
+import { Roles } from '@shared/enums';
 
 @Component({
   selector: 'listado-filtro-ventas',
@@ -31,6 +34,7 @@ import moment from 'moment';
   ],
   providers: [
     PaymentTypeService,
+    // SalesService,
     provideMomentDateAdapter(CUSTOM_DATE_FORMATS)
   ],
   templateUrl: './filtro-ventas.component.html',
@@ -47,16 +51,20 @@ export class FiltroVentasComponent {
   public search: EventEmitter<SalesFilter> = new EventEmitter();
 
   private _paymentTypeService = inject(PaymentTypeService);
+  private _salesService = inject(SalesService);
+
   public paymentTypes: PaymentType[] = [];
+  public users: User[] = [];
 
   ngOnInit() {
-    const currentDate = DateTime.now().toFormat('yyyy-MM-dd');
+    const dateInitDate = DateTime.now().minus({ weeks: 2 }).toFormat('yyyy-MM-dd');
+    const dateEndDate = DateTime.now().toFormat('yyyy-MM-dd');
 
     this.initFormElements();
     this.initFormFilters();
     this.formSearch.patchValue({
-      fecha_inicio: currentDate,
-      fecha_fin: currentDate
+      fecha_inicio: dateInitDate,
+      fecha_fin: dateEndDate
     });
 
     this.submit();
@@ -75,11 +83,17 @@ export class FiltroVentasComponent {
   async initFormElements() {
     await Promise.all([
       this.getPaymentTypes(),
+      this.getUsers()
     ])
   }
 
   async getPaymentTypes() {
     this.paymentTypes = await lastValueFrom(this._paymentTypeService.getAll());
+    // console.log(this.categorias_producto);
+  }
+
+  async getUsers() {
+    this.users = await lastValueFrom(this._salesService.getUsersByProfile(Roles.VENDEDOR));
     // console.log(this.categorias_producto);
   }
 

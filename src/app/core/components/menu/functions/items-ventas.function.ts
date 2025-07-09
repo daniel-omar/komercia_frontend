@@ -8,11 +8,11 @@ export function buildConfigVentas(menuRoleService: MenuRoleService): IMenu {
         icon: "/assets/img/menu/barras.svg",
         visible: menuRoleService.onVisibleReportes(),
         subitems: [
-            {
-                text: "Nueva venta",
-                url: "/ventas/nueva-venta",
-                visible: true
-            },
+            // {
+            //     text: "Nueva venta",
+            //     url: "/ventas/nueva-venta",
+            //     visible: true
+            // },
             {
                 text: "Listado de ventas",
                 url: "/ventas/listado-ventas",

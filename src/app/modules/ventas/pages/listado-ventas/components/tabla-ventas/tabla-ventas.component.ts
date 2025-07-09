@@ -61,7 +61,7 @@ export class TablaVentasComponent {
   setColumnsDefinition(): void {
     this.displayedColumns.forEach((column) => {
       let show: boolean = true;
-      if (["es_activo"].indexOf(column.toLowerCase()) >= 0) show = false;
+      if (["es_activo", "tiene_descuento", "tipo_descuento", "descuento"].indexOf(column.toLowerCase()) >= 0) show = false;
 
       this.columnsDefinition.push({
         id: column,
@@ -100,5 +100,10 @@ export class TablaVentasComponent {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
+  }
+
+  onViewDetail(element: Sale) {
+    console.log(element);
+    this.router.navigate(["ventas/detalle-venta", element.id_venta]);
   }
 }

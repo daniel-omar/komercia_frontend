@@ -8,7 +8,9 @@
                         N° venta</th>
                     <td mat-cell *matCellDef="let element">
                         <div class="content_item">
-                            {{element.id_venta}}
+                            <a class="item_codigo" (click)="onViewDetail(element)">
+                                {{element.id_venta}}
+                            </a>
                         </div>
                     </td>
                 </ng-container>
@@ -60,18 +62,9 @@
                     </td>
                 </ng-container>
 
-                <ng-container matColumnDef="total">
-                    <th mat-header-cell *matHeaderCellDef> Total </th>
-                    <td mat-cell *matCellDef="let element">
-                        <div class="content_item">
-                            {{element.total }}
-                        </div>
-                    </td>
-                </ng-container>
-
                 <ng-container matColumnDef="usuario_registro">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por fecha">
-                        Fecha y hora registro</th>
+                    <th mat-header-cell *matHeaderCellDef>
+                        Vendedor</th>
                     <td mat-cell *matCellDef="let element">
                         <div class="content_item">
                             {{`${element.usuario_registro.nombre}
@@ -81,9 +74,18 @@
                 </ng-container>
 
                 <ng-container matColumnDef="fecha_hora_registro">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Ordenar por fecha">
+                    <th mat-header-cell *matHeaderCellDef>
                         Fecha y hora registro</th>
-                    <td mat-cell *matCellDef="let element"> {{(element.fecha_hora_registro| date:'dd/MM/yyyy HH:mm')}}
+                    <td mat-cell *matCellDef="let element"> {{element.fecha_registro}} {{element.hora_registro}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="total">
+                    <th mat-header-cell *matHeaderCellDef> Total </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="content_item">
+                            {{element.total }}
+                        </div>
                     </td>
                 </ng-container>
 
