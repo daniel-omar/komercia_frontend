@@ -51,7 +51,6 @@ export class BreadcrumbComponent {
    * @returns La lista de migajas de pan correspondiente a la ruta actual.
    */
   private buildBreadCrumb(route: ActivatedRoute, url: string = '', breadcrumbs: IBreadCrumb[] = []): IBreadCrumb[] {
-
     let label = route.routeConfig && route.routeConfig.data ? route.routeConfig.data["breadcrumb"] : '';
     let path = route.routeConfig && route.routeConfig.data ? route.routeConfig.path : '';
 

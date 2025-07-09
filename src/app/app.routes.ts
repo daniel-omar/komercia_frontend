@@ -19,6 +19,8 @@ import { ListadoVentasComponent } from './modules/ventas/pages/listado-ventas/li
 import { NuevaVentaComponent } from './modules/ventas/pages/nueva-venta/nueva-venta.component';
 import { DetalleVentaComponent } from './modules/ventas/pages/detalle-venta/detalle-venta.component';
 import { SalesInterceptor } from './modules/ventas/interceptors/sales.interceptor';
+import { AdministrationInterceptor } from './modules/administracion/interceptors/administracion.interceptor';
+import { ListadoCategoriasComponent } from './modules/administracion/configuracion-productos/categorias/components/listado-categorias/listado-categorias.component';
 
 export const routes: Routes = [
     {
@@ -46,12 +48,22 @@ export const routes: Routes = [
     },
     {
         path: 'administracion',
+        data: { breadcrumb: 'Administración' },
         canMatch: [isAuthenticatedGuard],
         component: LayoutComponent,
+        providers: [
+            provideHttpClient(withInterceptorsFromDi()),
+            { provide: HTTP_INTERCEPTORS, useClass: AdministrationInterceptor, multi: true },
+        ],
         children: [
             {
-                path: 'datos-generales', title: 'Datos generales', children: [
-                    { path: 'tipo-usuario', title: 'Tipo Usuario', component: TipoUsuarioComponent },
+                path: 'datos-generales', title: 'Datos generales', data: { breadcrumb: 'Datos generales' }, children: [
+                    { path: 'tipo-usuario', title: 'Tipo Usuario', data: { breadcrumb: 'Tipo usuario' }, component: TipoUsuarioComponent },
+                ]
+            },
+            {
+                path: 'configuracion-productos', title: 'Configuración productos', data: { breadcrumb: 'configuración productos' }, children: [
+                    { path: 'categoria', title: 'Categoria', data: { breadcrumb: 'Categorias' }, component: ListadoCategoriasComponent },
                 ]
             },
             // { path: '**', redirectTo: 'auth' }

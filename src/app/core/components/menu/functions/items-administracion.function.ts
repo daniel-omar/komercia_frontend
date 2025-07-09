@@ -16,19 +16,19 @@ export function buildConfigAdministracion(menuRoleService: MenuRoleService): IMe
                 subitems: [
                     {
                         text: "Categoria Productos",
-                        url: "/administracion/productos/categoria",
-                        visible: false
+                        url: "/administracion/configuracion-productos/categoria",
+                        visible: true
                     }
                 ]
             },
             {
-                text: "Datos Generales",
+                text: "Personal",
                 url: "",
                 visible: true,
                 subitems: [
                     {
                         text: "Configuración",
-                        url: "/administracion/datos-generales/tipo-usuario",
+                        url: "/administracion/personal/usuario",
                         visible: true
                     }
 

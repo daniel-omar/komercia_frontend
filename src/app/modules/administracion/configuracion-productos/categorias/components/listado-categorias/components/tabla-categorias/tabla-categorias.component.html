@@ -1,0 +1,51 @@
+<article class="row mt-2" *ngIf="dataSource && dataSource.data && dataSource.data.length > 0; else noDataBlock">
+    <ng-container>
+        <section class="table_container">
+            <table *ngIf="dataSource.data.length > 0" mat-table [dataSource]="dataSource" class="content__table">
+                <ng-container matColumnDef="nombre" [sticky]="true">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element">
+                        <a class="item_codigo" (click)="onEditProductCategory(element)">
+                            {{element.nombre_categoria}}
+                        </a>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="descripcion">
+                    <th mat-header-cell *matHeaderCellDef> Descripción </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.descripcion_categoria}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="es_activo">
+                    <th mat-header-cell *matHeaderCellDef> Estado </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="content_item">
+                            {{element.es_activo?"ACTIVO":"INACTIVO" }}
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="accion">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="content_item">
+
+                        </div>
+                    </td>
+                </ng-container>
+
+                <!-- </form> -->
+                <tr mat-header-row *matHeaderRowDef="columns; sticky:true"></tr>
+                <tr mat-row *matRowDef="let row; columns: columns"></tr>
+
+            </table>
+        </section>
+
+    </ng-container>
+
+</article>
+
+<ng-template #noDataBlock>
+    <app-no-data></app-no-data>
+</ng-template>
