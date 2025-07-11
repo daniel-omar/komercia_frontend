@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, ViewChild } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, ViewChild } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -55,6 +55,8 @@ export class TablaCategoriasComponent {
   @Input() set productCategorys(productCategorys: ProductCategory[]) {
     this.initTable(productCategorys);
   }
+  @Output("search")
+  public search: EventEmitter<boolean> = new EventEmitter()
 
   ngAfterViewInit(): void {
     console.log("B")
@@ -76,20 +78,30 @@ export class TablaCategoriasComponent {
     });
     dialogRef.afterClosed().subscribe(returns => {
       if (returns == NotifierType.SUCCESS) {
+        this.search.emit(true);
+
         const params = { data: 'Se guardaron los cambios' };
         this._modalService.openDialog(params);
       }
     })
   }
 
-  onDeactivate(element: any) {
+  async onDeactivate(element: ProductCategory) {
+    const result = await lastValueFrom(this._productCategoryService.updateActive({ id_categoria_producto: element.id_categoria_producto, es_activo: false }));
+    if (!result) return;
+    this.search.emit(true);
 
+    const params = { data: 'Se guardaron los cambios' };
+    this._modalService.openDialog(params);
   }
 
-  onActivate(element: any) {
+  async onActivate(element: ProductCategory) {
+    const result = await lastValueFrom(this._productCategoryService.updateActive({ id_categoria_producto: element.id_categoria_producto, es_activo: true }));
+    if (!result) return;
+    this.search.emit(true);
 
+    const params = { data: 'Se guardaron los cambios' };
+    this._modalService.openDialog(params);
   }
-
-
 
 }

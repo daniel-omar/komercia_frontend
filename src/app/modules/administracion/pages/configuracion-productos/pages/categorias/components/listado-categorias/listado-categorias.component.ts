@@ -46,6 +46,7 @@ export class ListadoCategoriasComponent {
     });
     dialogRef.afterClosed().subscribe(returns => {
       if (returns == NotifierType.SUCCESS) {
+        this.getAll();
         const params = { data: 'Se guardaron los cambios' };
         this._modalService.openDialog(params);
       }

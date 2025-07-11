@@ -93,6 +93,7 @@ export class FormularioCategoriaComponent implements OnInit {
     }
 
     let result: boolean = false;
+    console.log(body)
     if (this.editMode) result = await lastValueFrom(this._productCategoryService.update({ id_categoria_producto: this.idProductCategory, ...body }));
     else result = await lastValueFrom(this._productCategoryService.create(body));
 

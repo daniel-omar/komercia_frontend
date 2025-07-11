@@ -13,7 +13,7 @@ export class ProductCategoryService {
   private _http = inject(HttpClient);
 
   getAll(): Observable<ProductCategory[]> {
-    const url = `/products/product_category/get_all`;
+    const url = `/products/product_category/get_all_v2`;
     return this._http.get<ResponseData<ProductCategory[]>>(url)
       .pipe(
         map(({ data }) => {
@@ -62,7 +62,7 @@ export class ProductCategoryService {
   update(body: ProductCategoryForm): Observable<boolean> {
 
     const url = `/products/product_category/update`;
-    return this._http.post<ResponseData<boolean>>(url, body)
+    return this._http.put<ResponseData<boolean>>(url, body)
       .pipe(
         map(({ data }) => {
           console.log(data)
@@ -78,7 +78,7 @@ export class ProductCategoryService {
   updateActive(body: ProductCategoryForm): Observable<boolean> {
 
     const url = `/products/product_category/update_active`;
-    return this._http.post<ResponseData<boolean>>(url, body)
+    return this._http.put<ResponseData<boolean>>(url, body)
       .pipe(
         map(({ data }) => {
           console.log(data)
