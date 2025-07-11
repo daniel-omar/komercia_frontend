@@ -61,10 +61,11 @@ export const routes: Routes = [
         // ],
         children: [
             {
-                path: 'configuracion-personal', title: 'Configuración personal', data: { breadcrumb: 'configuración productos' }, children: [
+                path: 'configuracion-personal', title: 'Configuración personal', data: { breadcrumb: 'configuración personal' }, children: [
                     { path: 'tipo-usuario', title: 'Tipo Usuario', data: { breadcrumb: 'Tipo usuario' }, component: TipoUsuarioComponent },
                     { path: 'usuarios', title: 'Usuarios', data: { breadcrumb: 'Usuarios' }, component: ListadoUsuariosComponent },
-                    { path: 'formulario-usuario', title: 'Usuario', data: { breadcrumb: 'Usuario' }, component: FormularioPersonalComponent },
+                    { path: 'nuevo-usuario', title: 'Usuario', data: { breadcrumb: 'Usuario' }, component: FormularioPersonalComponent },
+                    { path: 'edicion-usuario/:id', title: 'Usuario', data: { breadcrumb: 'Usuario' }, component: FormularioPersonalComponent },
                 ]
             },
             {

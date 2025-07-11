@@ -51,6 +51,6 @@ export class ListadoUsuariosComponent {
   }
 
   goCreate() {
-    this.router.navigate(["administracion/configuracion-personal/formulario-usuario"]);
+    this.router.navigate(["administracion/configuracion-personal/nuevo-usuario"]);
   }
 }

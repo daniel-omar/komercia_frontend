@@ -129,7 +129,7 @@ export class TablaUsuariosComponent {
 
   onEdit(element: User) {
     console.log(element);
-    this.router.navigate(["administracion/configuracion-personal/formulario-usuario", element.id_usuario]);
+    this.router.navigate(["administracion/configuracion-personal/edicion-usuario", element.id_usuario]);
   }
 
   async onDeactivate(element: User) {

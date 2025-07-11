@@ -53,13 +53,14 @@ export class UserService {
   }
 
   create(body: UserForm): Observable<boolean> {
+    body.clave = body.numero_documento;
 
     const url = `/users/user/create`;
-    return this._http.post<ResponseData<boolean>>(url, body)
+    return this._http.post<ResponseData<User>>(url, body)
       .pipe(
         map(({ data }) => {
           console.log(data)
-          return data;
+          return true;
         }),
         catchError((error: HttpErrorResponse) => {
           console.log(error)

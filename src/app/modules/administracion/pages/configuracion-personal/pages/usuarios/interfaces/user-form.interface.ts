@@ -9,4 +9,5 @@ export interface UserForm {
     numero_telefono?: string;
     correo?: string;
     id_perfil: number;
+    clave?: string;
 }
