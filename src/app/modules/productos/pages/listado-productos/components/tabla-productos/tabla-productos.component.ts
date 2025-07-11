@@ -21,6 +21,11 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Router } from '@angular/router';
 import { NoDataComponent } from '@shared/components/no-data/no-data.component';
 import { StatusPipe } from '@shared/pipes/status.pipe';
+import { MatMenuModule } from '@angular/material/menu';
+import { lastValueFrom } from 'rxjs';
+import { ProductService } from 'src/app/modules/productos/services/product.service';
+import { ModalService } from '@shared/services/modal.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'listado-tabla-productos',
@@ -28,13 +33,18 @@ import { StatusPipe } from '@shared/pipes/status.pipe';
     CommonModule,
 
     MatIconModule,
+    MatButtonModule,
     MatPaginatorModule,
     MatTableModule,
     MatTooltipModule,
     MatSortModule,
+    MatMenuModule,
 
     NoDataComponent,
     StatusPipe
+  ],
+  providers: [
+    ProductService
   ],
   templateUrl: './tabla-productos.component.html',
   styleUrl: './tabla-productos.component.scss'
@@ -47,6 +57,9 @@ export class TablaProductosComponent {
   public paginador: Paginator = new Paginator();
   private _liveAnnouncer = inject(LiveAnnouncer);
   private readonly router = inject(Router)
+
+  private _productService = inject(ProductService);
+  private _modalService = inject(ModalService);
 
   @Input() tableProperties!: TableProperties;
   @Input() set productosResponse(productsResponse: ProductsResponse) {
@@ -72,7 +85,7 @@ export class TablaProductosComponent {
   setColumnsDefinition(): void {
     this.displayedColumns.forEach((column) => {
       let show: boolean = true;
-      if (["accion"].indexOf(column.toLowerCase()) >= 0) show = false;
+      if (["x"].indexOf(column.toLowerCase()) >= 0) show = false;
 
       this.columnsDefinition.push({
         id: column,
@@ -116,5 +129,24 @@ export class TablaProductosComponent {
     console.log(element);
     this.router.navigate(["productos/edicion-producto", element.id_producto]);
   }
+
+  async onDeactivate(element: Product) {
+    const result = await lastValueFrom(this._productService.updateActive({ id_producto: element.id_producto, es_activo: false }));
+    if (!result) return;
+    this.changePage.emit(this.paginador);
+
+    const params = { data: 'Se guardaron los cambios' };
+    this._modalService.openDialog(params);
+  }
+
+  async onActivate(element: Product) {
+    const result = await lastValueFrom(this._productService.updateActive({ id_producto: element.id_producto, es_activo: true }));
+    if (!result) return;
+    this.changePage.emit(this.paginador);
+
+    const params = { data: 'Se guardaron los cambios' };
+    this._modalService.openDialog(params);
+  }
+
 
 }

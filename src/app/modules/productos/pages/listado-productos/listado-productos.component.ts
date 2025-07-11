@@ -30,7 +30,7 @@ export class ListadoProductosComponent {
   public productsFilter!: ProductsFilter;
   public productsResponseObservable$!: Observable<ProductsResponse>;
 
-  public paginador: Paginator = new Paginator({ per_page: 5, new_page: 1, total: 0, current_page: 0, pages: 0 });
+  public paginador: Paginator = new Paginator({ per_page: 10, new_page: 1, total: 0, current_page: 0, pages: 0 });
 
   private readonly router = inject(Router);
 

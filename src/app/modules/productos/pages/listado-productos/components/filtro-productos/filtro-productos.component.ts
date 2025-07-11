@@ -71,7 +71,7 @@ export class FiltroProductosComponent {
   submit() {
 
     const { nombre, ids_categoria_producto } = this.formSearch.value;
-    this.onSearch({ nombre_producto: nombre, ids_categoria: ids_categoria_producto, es_activo: true });
+    this.onSearch({ nombre_producto: nombre, ids_categoria: ids_categoria_producto });
   }
 
   private onSearch(params: ProductsFilter): void {

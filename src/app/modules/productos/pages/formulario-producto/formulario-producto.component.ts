@@ -110,7 +110,17 @@ export class FormularioProductoComponent {
 
     const { nombre_producto, descripcion_producto, precio_compra, precio_venta, id_categoria_producto } = this.formProduct.value;
 
-    const result = await lastValueFrom(this._productService.create({ nombre_producto: nombre_producto.trim(), descripcion_producto: descripcion_producto.trim(), precio_compra, precio_venta, id_categoria_producto }));
+    const body = {
+      nombre_producto: nombre_producto.trim(),
+      descripcion_producto: descripcion_producto.trim(),
+      precio_compra,
+      precio_venta,
+      id_categoria_producto
+    }
+
+    let result: boolean = false;
+    if (this.editMode) result = await lastValueFrom(this._productService.update({ id_producto: this.idProduct, ...body }));
+    else result = await lastValueFrom(this._productService.create(body));
 
     if (!result) return;
 

@@ -9,6 +9,7 @@ import { CommonService } from '@shared/services/common.service';
 import { ProductsResponse } from '../interfaces/products-response.interface';
 import { Pagination } from '@shared/interfaces/pagination.interface';
 import { ProductForm } from '../interfaces/product-form.interface';
+import { ProductActive } from '../interfaces/product-active.interface';
 
 @Injectable()
 export class ProductService {
@@ -47,4 +48,35 @@ export class ProductService {
       );
   }
 
+  update(body: ProductForm): Observable<boolean> {
+
+    const url = `/products/product/update`;
+    return this._http.put<ResponseData<boolean>>(url, body)
+      .pipe(
+        map(({ data }) => {
+          console.log(data)
+          return data;
+        }),
+        catchError((error: HttpErrorResponse) => {
+          console.log(error)
+          return throwError(() => error.error.message)
+        })
+      );
+  }
+
+  updateActive(body: ProductActive): Observable<boolean> {
+
+    const url = `/products/product/update_active`;
+    return this._http.put<ResponseData<boolean>>(url, body)
+      .pipe(
+        map(({ data }) => {
+          console.log(data)
+          return data;
+        }),
+        catchError((error: HttpErrorResponse) => {
+          console.log(error)
+          return throwError(() => error.error.message)
+        })
+      );
+  }
 }
