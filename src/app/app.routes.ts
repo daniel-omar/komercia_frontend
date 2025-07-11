@@ -21,6 +21,7 @@ import { DetalleVentaComponent } from './modules/ventas/pages/detalle-venta/deta
 import { SalesInterceptor } from './modules/ventas/interceptors/sales.interceptor';
 import { AdministrationInterceptor } from './modules/administracion/interceptors/administracion.interceptor';
 import { ListadoCategoriasComponent } from './modules/administracion/pages/configuracion-productos/pages/categorias/components/listado-categorias/listado-categorias.component';
+import { ProductCategoryService } from './modules/administracion/services/product_category.service';
 
 export const routes: Routes = [
     {
@@ -35,8 +36,8 @@ export const routes: Routes = [
         path: 'auth',
         data: { preload: true },
         providers: [
-            provideHttpClient(withInterceptorsFromDi()),
-            { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+            // provideHttpClient(withInterceptorsFromDi()),
+            // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
             AuthService
         ],
         children: [
@@ -51,10 +52,10 @@ export const routes: Routes = [
         data: { breadcrumb: 'Administración' },
         canMatch: [isAuthenticatedGuard],
         component: LayoutComponent,
-        providers: [
-            provideHttpClient(withInterceptorsFromDi()),
-            { provide: HTTP_INTERCEPTORS, useClass: AdministrationInterceptor, multi: true },
-        ],
+        // providers: [
+        //     provideHttpClient(withInterceptorsFromDi()),
+        //     { provide: HTTP_INTERCEPTORS, useClass: AdministrationInterceptor, multi: true }
+        // ],
         children: [
             {
                 path: 'datos-generales', title: 'Datos generales', data: { breadcrumb: 'Datos generales' }, children: [
@@ -75,10 +76,10 @@ export const routes: Routes = [
         data: { breadcrumb: 'Productos' },
         canMatch: [isAuthenticatedGuard],
         component: LayoutComponent,
-        providers: [
-            provideHttpClient(withInterceptorsFromDi()),
-            { provide: HTTP_INTERCEPTORS, useClass: ProductsInterceptor, multi: true },
-        ],
+        // providers: [
+        //     provideHttpClient(withInterceptorsFromDi()),
+        //     { provide: HTTP_INTERCEPTORS, useClass: ProductsInterceptor, multi: true },
+        // ],
         children: [
             { path: 'listado-productos', data: { breadcrumb: 'Listado Productos' }, title: 'Productos', component: ListadoProductosComponent },
             { path: 'nuevo-producto', data: { breadcrumb: 'Nuevo Producto' }, title: 'Productos', component: FormularioProductoComponent },
@@ -92,10 +93,10 @@ export const routes: Routes = [
         data: { breadcrumb: 'Ventas' },
         canMatch: [isAuthenticatedGuard],
         component: LayoutComponent,
-        providers: [
-            provideHttpClient(withInterceptorsFromDi()),
-            { provide: HTTP_INTERCEPTORS, useClass: SalesInterceptor, multi: true },
-        ],
+        // providers: [
+        //     provideHttpClient(withInterceptorsFromDi()),
+        //     { provide: HTTP_INTERCEPTORS, useClass: SalesInterceptor, multi: true },
+        // ],
         children: [
             { path: 'listado-ventas', data: { breadcrumb: 'Listado Ventas' }, title: 'Ventas', component: ListadoVentasComponent },
             { path: 'nueva-venta', data: { breadcrumb: 'Nueva Venta' }, title: 'Ventas', component: NuevaVentaComponent },

@@ -69,7 +69,7 @@ export class FormularioCategoriaComponent implements OnInit {
     this.initForm();
     if (this.editMode) {
       this.formCategory.patchValue(this.productCategory);
-      this.get();
+      // this.get();
     }
   }
 
@@ -92,8 +92,11 @@ export class FormularioCategoriaComponent implements OnInit {
       descripcion_categoria
     }
 
-    // const result = await lastValueFrom(this._productCategoryService.create(body));
-    const result = true;
+    let result: boolean = false;
+    if (this.editMode) result = await lastValueFrom(this._productCategoryService.update({ id_categoria_producto: this.idProductCategory, ...body }));
+    else result = await lastValueFrom(this._productCategoryService.create(body));
+
+    // const result = true;
     if (!result) return;
 
     this.dialogRef.close(NotifierType.SUCCESS);

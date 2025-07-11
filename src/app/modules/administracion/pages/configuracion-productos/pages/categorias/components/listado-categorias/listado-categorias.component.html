@@ -1,3 +1,11 @@
+<div class="row mt-2">
+    <div class="col-12 d-flex justify-content-end">
+        <button mat-stroked-button extended (click)="onCreate()">
+            Crear producto
+            <mat-icon class="icon-large">add</mat-icon>
+        </button>
+    </div>
+</div>
 <div class="row">
     <div class="col-12 px-5">
         <configuracion-listado-tabla-categorias *ngIf="(productCategorysObservable$ | async) as productCategorys"
