@@ -85,6 +85,8 @@ export class FormularioCategoriaComponent implements OnInit {
   }
 
   async submit() {
+    if (!this.formCategory.valid) return;
+
     const { nombre_categoria, descripcion_categoria } = this.formCategory.value;
 
     const body = {
