@@ -17,6 +17,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalService } from '@shared/services/modal.service';
 import { FormularioCategoriaComponent } from '../../../../dialogs/formulario-categoria/formulario-categoria.component';
 import { NotifierType } from '@shared/enums';
+import { lastValueFrom } from 'rxjs';
+import { ProductCategoryService } from 'src/app/modules/administracion/services/product_category.service';
 
 @Component({
   selector: 'configuracion-listado-tabla-categorias',
@@ -33,6 +35,7 @@ import { NotifierType } from '@shared/enums';
 
     StatusPipe
   ],
+  providers: [ProductCategoryService],
   templateUrl: './tabla-categorias.component.html',
   styleUrl: './tabla-categorias.component.scss'
 })
@@ -43,6 +46,8 @@ export class TablaCategoriasComponent {
   public paginador: Paginator = new Paginator();
   private dialog = inject(MatDialog);
   private _modalService = inject(ModalService);
+
+  private _productCategoryService = inject(ProductCategoryService);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -61,15 +66,12 @@ export class TablaCategoriasComponent {
     this.dataSource = new MatTableDataSource(productCategorys);
   }
 
-  onEditProductCategory(element: ProductCategory) {
-    console.log(element);
-    this.router.navigate(["/administracion/configuracion-productos/categoria", element.id_categoria_producto]);
-  }
+  async onEdit(element: ProductCategory) {
+    const productCategory = await lastValueFrom(this._productCategoryService.getById(element.id_categoria_producto));
 
-  onEdit(element: any) {
     const dialogRef = this.dialog.open(FormularioCategoriaComponent, {
       width: '20rem',
-      data: element,
+      data: productCategory,
       panelClass: 'border__rounded'
     });
     dialogRef.afterClosed().subscribe(returns => {
@@ -87,4 +89,7 @@ export class TablaCategoriasComponent {
   onActivate(element: any) {
 
   }
+
+
+
 }

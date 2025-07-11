@@ -62,7 +62,8 @@ export const routes: Routes = [
                 ]
             },
             {
-                path: 'configuracion-productos', title: 'Configuración productos', data: { breadcrumb: 'configuración productos' }, children: [
+                path: 'configuracion-productos', title: 'Configuración productos', data: { breadcrumb: 'configuración productos' },
+                children: [
                     { path: 'categoria', title: 'Categoria', data: { breadcrumb: 'Categorias' }, component: ListadoCategoriasComponent },
                 ]
             },

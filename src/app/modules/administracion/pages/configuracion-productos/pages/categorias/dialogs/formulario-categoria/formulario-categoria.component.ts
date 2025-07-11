@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { Component, Inject, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,6 +13,7 @@ import { RequestStatus } from '@shared/enums/request-status.enum';
 import { ModalService } from '@shared/services/modal.service';
 import { ValidatorsService } from '@shared/services/validators.service';
 import { Observable, lastValueFrom, map, tap } from 'rxjs';
+import { AdministrationInterceptor } from 'src/app/modules/administracion/interceptors/administracion.interceptor';
 import { ProductCategoryService } from 'src/app/modules/administracion/services/product_category.service';
 import { ProductCategory } from 'src/app/modules/productos/interfaces/product-category.interface';
 
@@ -31,7 +33,8 @@ import { ProductCategory } from 'src/app/modules/productos/interfaces/product-ca
   providers: [
     ProductCategoryService,
     ModalService,
-    ValidatorsService
+    ValidatorsService,
+
   ],
   templateUrl: './formulario-categoria.component.html',
   styleUrls: ['./formulario-categoria.component.scss']
@@ -53,20 +56,32 @@ export class FormularioCategoriaComponent implements OnInit {
   public editMode: boolean = false;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: ProductCategory | null
   ) {
-    this.productCategory = data;
+    if (data) {
+      this.idProductCategory = data.id_categoria_producto;
+      this.productCategory = data;
+      this.editMode = true;
+    }
   }
 
   ngOnInit(): void {
     this.initForm();
+    if (this.editMode) {
+      this.formCategory.patchValue(this.productCategory);
+      this.get();
+    }
   }
 
   private initForm(): void {
     this.formCategory = this.formBuilder.group({
-      nombre_categoria: [this.productCategory.nombre_categoria, [Validators.required]],
-      descripcion_categoria: [this.productCategory.descripcion_categoria]
+      nombre_categoria: ["", [Validators.required]],
+      descripcion_categoria: [""]
     })
+  }
+
+  async get() {
+    const productCategory = await lastValueFrom(this._productCategoryService.getById(this.idProductCategory!));
   }
 
   async submit() {
@@ -96,4 +111,5 @@ export class FormularioCategoriaComponent implements OnInit {
   clear() {
     this.formCategory.reset();
   }
+
 }

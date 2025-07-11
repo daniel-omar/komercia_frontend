@@ -40,7 +40,8 @@ export class AdministrationInterceptor implements HttpInterceptor {
         if (token) this.addTokenHeader(token);
 
         this._loader.show();
-
+        
+        console.log(this.apiBaseUrl)
         console.log(this.request)
 
         return next.handle(this.request).pipe(

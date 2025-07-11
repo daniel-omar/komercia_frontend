@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Router } from '@angular/router';
 import { NoDataComponent } from '@shared/components/no-data/no-data.component';
+import { StatusPipe } from '@shared/pipes/status.pipe';
 
 @Component({
   selector: 'listado-tabla-productos',
@@ -32,7 +33,8 @@ import { NoDataComponent } from '@shared/components/no-data/no-data.component';
     MatTooltipModule,
     MatSortModule,
 
-    NoDataComponent
+    NoDataComponent,
+    StatusPipe
   ],
   templateUrl: './tabla-productos.component.html',
   styleUrl: './tabla-productos.component.scss'

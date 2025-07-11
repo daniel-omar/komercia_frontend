@@ -96,7 +96,6 @@
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="center">
-    <button mat-stroked-button [mat-dialog-close]="true">{{ data.buttonCancelText || 'CANCELAR' }}</button>
-    <button mat-flat-button cdkFocusInitial (click)="submit()">{{ data.buttonConfirmText || 'ACEPTAR'
-        }}</button>
+    <button mat-stroked-button [mat-dialog-close]="true">CANCELAR</button>
+    <button mat-flat-button cdkFocusInitial (click)="submit()">ACEPTAR</button>
 </mat-dialog-actions>

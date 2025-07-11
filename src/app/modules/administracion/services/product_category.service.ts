@@ -27,6 +27,22 @@ export class ProductCategoryService {
 
   }
 
+  getById(idCategoria: number): Observable<ProductCategory> {
+
+    const url = `/products/product_category/get_by_id/${idCategoria}`;
+    return this._http.get<ResponseData<ProductCategory>>(url)
+      .pipe(
+        map(({ data }) => {
+          console.log(data)
+          return data;
+        }),
+        catchError((error: HttpErrorResponse) => {
+          console.log(error)
+          return throwError(() => error.error.message)
+        })
+      );
+  }
+
   create(body: ProductCategoryForm): Observable<boolean> {
 
     const url = `/products/product_category/create`;
@@ -46,6 +62,22 @@ export class ProductCategoryService {
   update(body: ProductCategoryForm): Observable<boolean> {
 
     const url = `/products/product_category/update`;
+    return this._http.post<ResponseData<boolean>>(url, body)
+      .pipe(
+        map(({ data }) => {
+          console.log(data)
+          return data;
+        }),
+        catchError((error: HttpErrorResponse) => {
+          console.log(error)
+          return throwError(() => error.error.message)
+        })
+      );
+  }
+
+  updateActive(body: ProductCategoryForm): Observable<boolean> {
+
+    const url = `/products/product_category/update_active`;
     return this._http.post<ResponseData<boolean>>(url, body)
       .pipe(
         map(({ data }) => {
