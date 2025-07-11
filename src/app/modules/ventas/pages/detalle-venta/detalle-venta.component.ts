@@ -46,7 +46,7 @@ export class DetalleVentaComponent {
   private readonly activatedRoute = inject(ActivatedRoute)
   private idSale!: number;
   public sale!: Sale;
-  public saleDetails!: SaleDetail[];
+  public saleDetails: SaleDetail[] = [];
 
   columnas: string[] = ['producto', 'variante', 'cantidad', 'precioUnitario', 'subtotal'];
 
@@ -80,6 +80,6 @@ export class DetalleVentaComponent {
   }
 
   obtenerTotal(): number {
-    return this.saleDetails.reduce((acc, item) => acc + (item.sub_total), 0);
+    return this.saleDetails.reduce((acc, item) => acc + Number(item.sub_total), 0);
   }
 }

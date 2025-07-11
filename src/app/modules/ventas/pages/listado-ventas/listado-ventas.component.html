@@ -1,11 +1,11 @@
-<div class="row mt-2">
+<!-- <div class="row mt-2">
     <div class="col-12 d-flex justify-content-end">
         <button mat-stroked-button extended (click)="goCreateSale()">
             Crear venta
             <mat-icon class="icon-large">chevron_right</mat-icon>
         </button>
     </div>
-</div>
+</div> -->
 <listado-filtro-ventas (search)="searchByFilters($event)"></listado-filtro-ventas>
 <listado-tabla-ventas *ngIf="(salesResponseObservable$ | async) as salesResponse" [salesResponse]="salesResponse"
     [tableProperties]="{

@@ -1,0 +1,102 @@
+<!-- <div class="dialog__content">
+
+    <div class="dialog__content__button__header">
+        <button mat-icon-button [mat-dialog-close]="false" mat-dialog-close color="primary">
+            <mat-icon svgIcon="close_dialog"></mat-icon>
+        </button>
+    </div>
+
+    <div class="dialog__content__message">
+        <div>Editar subetapa de obra</div>
+    </div>
+
+    <div class="panel-container">
+        <div class="row" [formGroup]="formTemplate">
+
+          
+
+            <div class="col-12 ">
+                <div class="form__select">
+                    <span>Etapa *</span>
+                    <select formControlName="etapaobra">
+                        <option value="">Selecciona la etapa</option>
+                        <option *ngFor="let etapa_obra of etapas_obra$ | async" [value]="etapa_obra.codigo">
+                            {{etapa_obra.descripcion}} </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-12 ">
+                <div class="form__input">
+                    <span>Subetapa de obra *</span>
+                    <label for="sub_etapa_obra">
+                        <input type="text" formControlName="subetapaobra"
+                            placeholder="Escribe el nombre de la subetapa">
+                    </label>
+                </div>
+            </div>
+
+           
+            <div class="col-12 ">
+                <app-custom-incremental [formGroup]="formTemplate" [item]="{
+                label: 'Posición',
+                required: true, 
+                formControlName: 'posicion'}">
+                </app-custom-incremental>
+
+            </div>
+
+            <div class="col-12 ">
+                <div class="form__input">
+                    <span>Definición *</span>
+                    <label for="definicion">
+                        <textarea type="textarea" formControlName="definicion" rows="4"
+                            placeholder="Escribe una definición"></textarea>
+                    </label>
+                </div>
+            </div> 
+
+            <div class="col-12">
+                <div class="dialog__botonera">
+                    <button type="button" class="boton_dialog boton__verde__outline" mat-flat-button
+                        (click)="cerrar()">Cancelar</button>  
+                    <button type="button" class="boton_dialog boton__verde" mat-flat-button (click)="guardar()"
+                        [disabled]="!formTemplate.valid">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div mat-dialog-title>
+    <div class="row" style="margin-top: -20px !important;">
+        <div class="col-12 d-flex justify-content-center">
+            Editar categoria
+        </div>
+    </div>
+</div>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="formCategory" (ngSubmit)="submit()">
+        <div class="row my-2">
+            <div class="col-12 col-md-12 col-sm-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput type="text" placeholder="Nombre" formControlName="nombre_categoria">
+                    @if (isInvalidField("nombre_categoria")) {
+                    <mat-error> {{getFieldError('nombre_categoria')}}</mat-error>
+                    }
+                </mat-form-field>
+            </div>
+            <div class="col-12 col-md-12 col-sm-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Descripción</mat-label>
+                    <input matInput type="text" placeholder="Descripcion" formControlName="descripcion_categoria">
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-stroked-button [mat-dialog-close]="true">{{ data.buttonCancelText || 'CANCELAR' }}</button>
+    <button mat-flat-button cdkFocusInitial (click)="submit()">{{ data.buttonConfirmText || 'ACEPTAR'
+        }}</button>
+</mat-dialog-actions>

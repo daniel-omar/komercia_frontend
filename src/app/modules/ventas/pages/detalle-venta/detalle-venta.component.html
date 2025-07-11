@@ -5,7 +5,7 @@
                 <mat-card-title>Detalle venta</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <div class="row mt-2">
+                <div class="row mt-2" *ngIf="sale && saleDetails.length>0">
                     <div class="col-md-6 col-sm-12 venta-resumen ">
                         <p class="label">Concepto</p>
                         <p class="valor">{{ sale.concepto }}</p>

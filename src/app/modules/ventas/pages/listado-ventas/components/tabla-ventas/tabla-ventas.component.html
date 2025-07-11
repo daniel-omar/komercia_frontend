@@ -84,7 +84,7 @@
                     <th mat-header-cell *matHeaderCellDef> Total </th>
                     <td mat-cell *matCellDef="let element">
                         <div class="content_item">
-                            {{element.total }}
+                            {{element.total | number: '1.2-2' }}
                         </div>
                     </td>
                 </ng-container>

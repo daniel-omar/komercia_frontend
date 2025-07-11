@@ -6,7 +6,7 @@ import { ProductCategory } from 'src/app/modules/administracion/interfaces/produ
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-listado-categorias',
+  selector: 'listado-categorias-producto',
   imports: [
     CommonModule,
     TablaCategoriasComponent

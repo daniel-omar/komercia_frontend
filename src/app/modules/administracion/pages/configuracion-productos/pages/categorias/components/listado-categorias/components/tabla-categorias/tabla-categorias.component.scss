@@ -1,0 +1,26 @@
+.item_codigo {
+    cursor: pointer;
+}
+
+.status {
+    border-radius: 10rem;
+    padding: 0rem 1.2rem 0rem 1.2rem;
+    font-size: 0.8rem;
+    line-height: 2.3rem;
+    letter-spacing: 1.25px;
+    cursor: default;
+}
+
+.status--active {
+    background: #CDEEDC;
+    border: 1px solid #CDEEDC;
+    color: #035629;
+}
+
+.status--inactive {
+    background: #CBCBCB;
+    border: 1px solid #CBCBCB;
+    color: #303439;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}

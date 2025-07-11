@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="col-12 px-5">
+        <configuracion-listado-tabla-categorias *ngIf="(productCategorysObservable$ | async) as productCategorys"
+            [productCategorys]="productCategorys" [tableProperties]="{
+    visibleEdit: true,
+    message_no_data: 'No hay información'
+    }"></configuracion-listado-tabla-categorias>
+    </div>
+</div>

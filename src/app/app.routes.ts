@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { LayoutComponent } from '@core/layout/layout.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LoginComponent } from './modules/auth/login/login.component';
-import { TipoUsuarioComponent } from './modules/administracion/datosGenerales/tipo-usuario/tipo-usuario.component';
+import { TipoUsuarioComponent } from './modules/administracion/pages/datosGenerales/pages/tipo-usuario/tipo-usuario.component';
 
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 
@@ -20,7 +20,7 @@ import { NuevaVentaComponent } from './modules/ventas/pages/nueva-venta/nueva-ve
 import { DetalleVentaComponent } from './modules/ventas/pages/detalle-venta/detalle-venta.component';
 import { SalesInterceptor } from './modules/ventas/interceptors/sales.interceptor';
 import { AdministrationInterceptor } from './modules/administracion/interceptors/administracion.interceptor';
-import { ListadoCategoriasComponent } from './modules/administracion/configuracion-productos/categorias/components/listado-categorias/listado-categorias.component';
+import { ListadoCategoriasComponent } from './modules/administracion/pages/configuracion-productos/pages/categorias/components/listado-categorias/listado-categorias.component';
 
 export const routes: Routes = [
     {
