@@ -14,7 +14,7 @@ import { ModalService } from '@shared/services/modal.service';
 import { ValidatorsService } from '@shared/services/validators.service';
 import { Observable, lastValueFrom, map, tap } from 'rxjs';
 import { AdministrationInterceptor } from 'src/app/modules/administracion/interceptors/administracion.interceptor';
-import { ProductCategoryService } from 'src/app/modules/administracion/services/product_category.service';
+import { ProductCategoryService } from 'src/app/modules/administracion/pages/configuracion-productos/services/product_category.service';
 import { ProductCategory } from 'src/app/modules/productos/interfaces/product-category.interface';
 
 @Component({

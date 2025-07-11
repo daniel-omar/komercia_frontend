@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { Paginator } from '@shared/classes/paginator.class';
 import { NoDataComponent } from '@shared/components/no-data/no-data.component';
 import { TableProperties } from '@shared/interfaces/table-properties.interface';
-import { ProductCategory } from 'src/app/modules/administracion/interfaces/product-category.interface';
+import { ProductCategory } from 'src/app/modules/administracion/pages/configuracion-productos/interfaces/product-category.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { StatusPipe } from '@shared/pipes/status.pipe';
 import { MatDialog } from '@angular/material/dialog';
@@ -18,7 +18,7 @@ import { ModalService } from '@shared/services/modal.service';
 import { FormularioCategoriaComponent } from '../../../../dialogs/formulario-categoria/formulario-categoria.component';
 import { NotifierType } from '@shared/enums';
 import { lastValueFrom } from 'rxjs';
-import { ProductCategoryService } from 'src/app/modules/administracion/services/product_category.service';
+import { ProductCategoryService } from 'src/app/modules/administracion/pages/configuracion-productos/services/product_category.service';
 
 @Component({
   selector: 'configuracion-listado-tabla-categorias',

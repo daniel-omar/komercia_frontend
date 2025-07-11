@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { LayoutComponent } from '@core/layout/layout.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LoginComponent } from './modules/auth/login/login.component';
-import { TipoUsuarioComponent } from './modules/administracion/pages/datosGenerales/pages/tipo-usuario/tipo-usuario.component';
+import { TipoUsuarioComponent } from './modules/administracion/pages/configuracion-personal/pages/tipo-usuario/tipo-usuario.component';
 
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 
@@ -21,7 +21,10 @@ import { DetalleVentaComponent } from './modules/ventas/pages/detalle-venta/deta
 import { SalesInterceptor } from './modules/ventas/interceptors/sales.interceptor';
 import { AdministrationInterceptor } from './modules/administracion/interceptors/administracion.interceptor';
 import { ListadoCategoriasComponent } from './modules/administracion/pages/configuracion-productos/pages/categorias/components/listado-categorias/listado-categorias.component';
-import { ProductCategoryService } from './modules/administracion/services/product_category.service';
+import { ProductCategoryService } from './modules/administracion/pages/configuracion-productos/services/product_category.service';
+import { UsuariosComponent } from './modules/administracion/pages/configuracion-personal/pages/usuarios/usuarios.component';
+import { ListadoUsuariosComponent } from './modules/administracion/pages/configuracion-personal/pages/usuarios/components/listado-usuarios/listado-usuarios.component';
+import { FormularioPersonalComponent } from './modules/administracion/pages/configuracion-personal/pages/usuarios/components/formulario-personal/formulario-personal.component';
 
 export const routes: Routes = [
     {
@@ -58,14 +61,16 @@ export const routes: Routes = [
         // ],
         children: [
             {
-                path: 'datos-generales', title: 'Datos generales', data: { breadcrumb: 'Datos generales' }, children: [
+                path: 'configuracion-personal', title: 'Configuración personal', data: { breadcrumb: 'configuración productos' }, children: [
                     { path: 'tipo-usuario', title: 'Tipo Usuario', data: { breadcrumb: 'Tipo usuario' }, component: TipoUsuarioComponent },
+                    { path: 'usuarios', title: 'Usuarios', data: { breadcrumb: 'Usuarios' }, component: ListadoUsuariosComponent },
+                    { path: 'formulario-usuario', title: 'Usuario', data: { breadcrumb: 'Usuario' }, component: FormularioPersonalComponent },
                 ]
             },
             {
                 path: 'configuracion-productos', title: 'Configuración productos', data: { breadcrumb: 'configuración productos' },
                 children: [
-                    { path: 'categoria', title: 'Categoria', data: { breadcrumb: 'Categorias' }, component: ListadoCategoriasComponent },
+                    { path: 'categorias', title: 'Categorias', data: { breadcrumb: 'Categorias' }, component: ListadoCategoriasComponent },
                 ]
             },
             // { path: '**', redirectTo: 'auth' }

@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { TablaCategoriasComponent } from './components/tabla-categorias/tabla-categorias.component';
-import { ProductCategoryService } from 'src/app/modules/administracion/services/product_category.service';
+import { ProductCategoryService } from 'src/app/modules/administracion/pages/configuracion-productos/services/product_category.service';
 import { Observable } from 'rxjs';
-import { ProductCategory } from 'src/app/modules/administracion/interfaces/product-category.interface';
+import { ProductCategory } from 'src/app/modules/administracion/pages/configuracion-productos/interfaces/product-category.interface';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalService } from '@shared/services/modal.service';
