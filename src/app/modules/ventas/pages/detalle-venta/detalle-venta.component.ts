@@ -80,6 +80,6 @@ export class DetalleVentaComponent {
   }
 
   obtenerTotal(): number {
-    return this.saleDetails.reduce((acc, item) => acc + (item.sub_total * item.cantidad), 0);
+    return this.saleDetails.reduce((acc, item) => acc + (item.sub_total), 0);
   }
 }
