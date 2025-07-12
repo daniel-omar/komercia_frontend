@@ -7,6 +7,7 @@ export function buildConfigProductos(menuRoleService: MenuRoleService): IMenu {
         text: "Productos",
         icon: "/assets/img/menu/productos.svg",
         visible: menuRoleService.onVisibleProductos(),
+        url: "productos",
         subitems: [
             {
                 text: "Creación de producto",

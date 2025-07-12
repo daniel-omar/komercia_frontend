@@ -3,6 +3,7 @@ export interface IMenu {
     icon: string;
     subitems: IMenuSubitem[];
     visible: boolean;
+    url: string;
 }
 
 export interface IMenuSubitem {

@@ -7,6 +7,7 @@ export function buildConfigCliente(menuRoleService: MenuRoleService): IMenu {
         text: "Cliente",
         icon: "/assets/img/menu/maletin.svg",
         visible: menuRoleService.onVisibleClientes(),
+        url: "clientes",
         subitems: [
             {
                 text: "Cartera Asignada",

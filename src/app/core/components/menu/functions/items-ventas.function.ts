@@ -7,6 +7,7 @@ export function buildConfigVentas(menuRoleService: MenuRoleService): IMenu {
         text: "Ventas",
         icon: "/assets/img/menu/barras.svg",
         visible: menuRoleService.onVisibleReportes(),
+        url: "ventas",
         subitems: [
             // {
             //     text: "Nueva venta",

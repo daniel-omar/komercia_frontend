@@ -8,10 +8,11 @@ export function buildConfigAdministracion(menuRoleService: MenuRoleService): IMe
         text: "ADMINISTRACIÓN",
         icon: "/assets/img/menu/engranaje.svg",
         visible: menuRoleService.onVisibleAdministracion(),
+        url: "administracion",
         subitems: [
             {
                 text: "Config. Productos",
-                url: "",
+                url: "/administracion/configuracion-productos/categorias",
                 visible: true,
                 subitems: [
                     {
@@ -23,7 +24,7 @@ export function buildConfigAdministracion(menuRoleService: MenuRoleService): IMe
             },
             {
                 text: "Personal",
-                url: "",
+                url: "/administracion/configuracion-personal/usuarios",
                 visible: true,
                 subitems: [
                     {
