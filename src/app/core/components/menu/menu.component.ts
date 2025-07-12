@@ -5,13 +5,15 @@ import { IMenu, IMenuSubitem } from '@core/interfaces';
 import { MenuService } from '@core/services/menu.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-menu',
   imports: [
     RouterModule,
     NgOptimizedImage,
-    CommonModule
+    CommonModule,
+    MatIconModule
   ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss'

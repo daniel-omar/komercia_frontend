@@ -1,1 +1,100 @@
-<p>home works!</p>
+<div class="row">
+    <div class="col-2">
+        <div class="row mb-2">
+            <div class="col-12">
+                <div class="card" style="height: 200px !important;max-height: 200px !important;">
+                    <div class="card-header">
+                        <div class="card-title">Año</div>
+                    </div>
+                    <div class="card-body" style="overflow-y: auto;">
+                        <mat-chip-listbox class="mat-mdc-chip-set-stacked" [(ngModel)]="selectedAnio"
+                            (ngModelChange)="onAnioChange($event)">
+                            @for (anio of anios; track anio) {
+                            <mat-chip-option [value]=" anio.valor">{{anio.etiqueta}}</mat-chip-option>
+                            }
+                        </mat-chip-listbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card" style="height: 650px !important;max-height: 650px !important;">
+                    <div class="card-header">
+                        <div class="card-title">Meses</div>
+                    </div>
+                    <div class="card-body" style="overflow-y: auto;">
+                        <mat-selection-list #shoes [(ngModel)]="selectedMeses" (ngModelChange)="onMesesChange($event)">
+                            @for (mes of meses; track mes) {
+                            <mat-list-option [value]="mes.valor">{{mes.etiqueta}}</mat-list-option>
+                            }
+                        </mat-selection-list>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-10">
+
+        <div class="row" *ngIf="(totalObservable$ | async) as totalResponse">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Ventas Totales</div>
+                    </div>
+                    <div class="card-body">
+                        <h2>S/ {{totalResponse.total_ventas ?? 0 | number:
+                            '1.2-2'}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Margen $</div>
+                    </div>
+                    <div class="card-body">
+                        <h2>S/ {{totalResponse.margen_ventas ?? 0 |
+                            number:
+                            '1.2-2'}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Margen %</div>
+                    </div>
+                    <div class="card-body">
+                        <h2>{{totalResponse.margen_ventas_porcentaje ?? 0
+                            | number:
+                            '1.2-2'}} %</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-4 mb-3">
+                <dashboard-ventas-mensuales *ngIf="(monthlySaleObservable$ | async) as monthlySaleResponse"
+                    [monthlySale]="monthlySaleResponse"></dashboard-ventas-mensuales>
+            </div>
+            <div class="col-4 mb-3">
+                <dashboard-productos-vendidos *ngIf="(productsSaleObservable$ | async) as  productsSaleResponse"
+                    [productsSale]="productsSaleResponse"></dashboard-productos-vendidos>
+            </div>
+            <div class="col-4 mb-3">
+                <dashboard-metodos-pago *ngIf="(paymentTypesSaleObservable$ | async) as paymentTypesSaleResponse"
+                    [paymentTypesSale]="paymentTypesSaleResponse"></dashboard-metodos-pago>
+            </div>
+            <div class="col-8 mb-3">
+                <dashboard-ventas-diarias *ngIf="(dailySaleObservable$ | async) as dailySaleResponse"
+                    [dailySale]="dailySaleResponse"></dashboard-ventas-diarias>
+            </div>
+            <div class="col-4 mb-3">
+                <dashboard-ventas-vendedor *ngIf="(usersSaleObservable$ | async) as usersSaleResponse"
+                    [usersSale]="usersSaleResponse"></dashboard-ventas-vendedor>
+            </div>
+        </div>
+    </div>
+</div>
