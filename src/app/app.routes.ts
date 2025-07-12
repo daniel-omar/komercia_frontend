@@ -32,7 +32,7 @@ export const routes: Routes = [
         component: LayoutComponent,
         // canMatch: [isAuthenticatedGuard],
         children: [
-            { path: '', pathMatch: 'full', canMatch: [isAuthenticatedGuard], loadComponent: () => import('@home/home.component').then(m => m.HomeComponent) },
+            { path: '', pathMatch: 'full', title: 'Home', data: { breadcrumb: 'Home' }, canMatch: [isAuthenticatedGuard], loadComponent: () => import('@home/home.component').then(m => m.HomeComponent) },
         ]
     },
     {
